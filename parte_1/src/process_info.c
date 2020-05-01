@@ -1,11 +1,16 @@
 #include "ep1.h"
 
-void	process_info(data *info, input *val, double (*func)(double, double))
+/*
+** build the 'data' structure
+*/
+
+void	process_info(data *info, double (*func)(double, double),
+                        double (*frnt_1)(double), double (*frnt_2)(double))
 {
-	info->M = val->M;
-	info->N = val->N;
-	info->d_x = 1.0 / val->N;
-	info->d_t = T / val->M;
+	info->d_x = 1.0 / info->N;
+	info->d_t = T / info->M;
 	info->lambda = (info->d_t)/(pow(info->d_x, 2.0));
 	info->f = func;
+    info->g1 = frnt_1;
+    info->g2 = frnt_2;
 }

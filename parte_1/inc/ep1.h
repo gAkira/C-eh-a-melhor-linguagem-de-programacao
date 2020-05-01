@@ -24,24 +24,29 @@ typedef struct
 {
 	int		M;
 	int		N;
-} input;
-
-typedef struct
-{
-	int		M;
-	int		N;
 	double	d_t;
 	double	d_x;
 	double	lambda;
 	double	(*f)(double, double);
+    double	(*g1)(double);
+    double	(*g2)(double);
 } data;
 
+typedef struct
+{
+    double	*old;
+    double	*new;
+} heat;
+
 double	fonte(double t, double x);
+double	fronteira_1(double t);
+double	fronteira_2(double t);
 double	init_value(double x);
 
-void	user_input(input *val);
-void	process_info(data *info, input *val, double (*func)(double, double));
-bool	create_matrix(double ***m, int rows, int cols);
-void	apply_init_value(double **m, data *info, double (*func)(double)); 
+void	user_input(data *info);
+void	process_info(data *info, double (*func)(double, double),
+						double (*frnt_1)(double), double (*frnt_2)(double));
+void	apply_init_value(heat *u, data *info, double (*func)(double)); 
+void	calc_u_new(heat *u, data *info, int k);
 
 #endif

@@ -1,9 +1,13 @@
 #include "ep1.h"
 
-void	user_input(input *val)
+/*
+** get user input values for M and N
+*/
+
+void	user_input(data *info)
 {
 	printf("Digite um valor para N:\t");
-	scanf("%d", &(val->N));
+	scanf("%d", &(info->N));
 	printf("Digite um valor para M:\t");
-	scanf("%d", &(val->M));
+	scanf("%d", &(info->M));
 }

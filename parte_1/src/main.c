@@ -12,25 +12,53 @@
 
 #include "ep1.h"
 
+void    print_into_file(FILE *fd, double *u, int k, data *info);
+
 int		main(void)
 {
-	input	value;
+	int		k;
+	FILE	*fd;
 	data	info;
-	double	**u;
+	heat	u;
 
-	user_input(&value);
-	process_info(&info, &value, &fonte);
-	if (!create_matrix(&u, value.M + 1, value.N + 1))
-		return (1);
-	apply_init_value(u, &info, &init_value);
-
-/*	PRINTA MATRIZ U NO TERMINAL
-	for (int i = 0; i < value.M + 1; i++)
+	user_input(&info);
+	process_info(&info, &fonte, &fronteira_1, &fronteira_2);
+	fd = fopen("./plot/bololo.haha", "w");
+	if (!(u.old = ((double*)malloc((info.N + 1) * sizeof(double)))))
 	{
-		for (int k = 0; k < value.N + 1; k++)
-			printf("%f\t", u[i][k]);
-		printf("\n");
+		fclose(fd);
+		return (1);
 	}
-*/
+	apply_init_value(&u, &info, &init_value);
+	print_into_file(fd, u.old, 0, &info);
+	k = 1;
+	while (k <= info.M)
+	{
+		if (!(u.new = (double*)malloc((info.N + 1) * sizeof(double))))
+		{
+			free(u.old);
+			fclose(fd);
+			return (1);
+		}
+		calc_u_new(&u, &info, k);
+		print_into_file(fd, u.new, k, &info);
+		free(u.old);
+		u.old = u.new;
+		k++;
+	}
+	free(u.old);
+	fclose(fd);
 	return (0);
+}
+
+void	print_into_file(FILE *fd, double *u, int k, data *info)
+{
+	int		i;
+
+	i = 0;
+	while (i <= info->N)
+	{
+		fprintf(fd, "%f %f %f\n", k * info->d_t, i * info->d_x, u[i]);
+		i++;
+	}
 }

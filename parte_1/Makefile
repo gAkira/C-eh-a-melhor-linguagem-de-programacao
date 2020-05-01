@@ -9,17 +9,19 @@ INCLUDE	=	inc
 SRC_DIR	=	src
 SRC		=	$(SRC_DIR)/main.c				\
 			$(SRC_DIR)/fonte.c				\
+            $(SRC_DIR)/fronteira.c          \
 			$(SRC_DIR)/user_input.c			\
 			$(SRC_DIR)/process_info.c		\
-			$(SRC_DIR)/create_matrix.c		\
 			$(SRC_DIR)/init_value.c			\
-			$(SRC_DIR)/apply_init_value.c
+			$(SRC_DIR)/apply_init_value.c	\
+			$(SRC_DIR)/calc_u_new.c
 
 OBJ_DIR	=	obj
 OBJ		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 all:	$(NAME)
 	@echo "Voila:"
+	@mkdir -p plot
 	@./$<
 
 $(NAME):	$(OBJ)
