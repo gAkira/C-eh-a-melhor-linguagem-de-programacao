@@ -13,6 +13,8 @@ double	fronteira_1(double t)
 	return (0.0);
 #	elif defined(EX_A)
 	return (0.0);
+#	elif defined(EX_B)
+	return (exp(t));
 #	else
 	return (-10E6);
 #	endif
@@ -25,6 +27,8 @@ double	fronteira_2(double t)
 	return (0.0);
 #	elif defined(EX_A)
 	return (0.0);
+#	elif defined(EX_B)
+	return (exp(t - 1) * cos(5 * t));
 #	else
 	return (-10E6);
 #	endif

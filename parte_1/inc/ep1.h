@@ -22,8 +22,8 @@
 # define CALC_ERROR
 
 //# define EX_A_FAKE
-# define EX_A
-//# define EX_B
+//# define EX_A
+# define EX_B
 //# define EX_C
 
 int	GRID_N;
