@@ -19,11 +19,21 @@
 # include <stdlib.h>
 
 # define T 1.0
-# define CALC_ERROR true
+# define CALC_ERROR
+
+//# define EX_A_FAKE
+# define EX_A
+//# define EX_B
+//# define EX_C
+
+# define GRID 40
 
 # define LOCAL_D "./"
 # define PLOT_D "plot/"
 # define DATA_D "data/"
+# define WLOCAL_D ".\\"
+# define WPLOT_D "plot\\"
+# define WDATA_D "data\\"
 # define HEAT_F "bololo.haha"
 # define ERROR_F "erroooo.ou"
 

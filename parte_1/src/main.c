@@ -24,7 +24,10 @@ int		main(void)
 
 	user_input(&info);
 	process_info(&info, &fonte, &fronteira_1, &fronteira_2);
-	fd_u = fopen(LOCAL_D PLOT_D DATA_D HEAT_F, "w");
+	if (getenv("OS"))
+		fd_u = fopen(WLOCAL_D WPLOT_D WDATA_D HEAT_F, "w");
+	else
+		fd_u = fopen(LOCAL_D PLOT_D DATA_D HEAT_F, "w");
 	if (!(u.old = (double*)malloc((info.N + 1) * sizeof(double))))
 	{
 		fclose(fd_u);
@@ -33,10 +36,13 @@ int		main(void)
 	apply_init_value(&u, &info, &init_value);
 	print_heat_file(fd_u, u.old, 0, &info);
 
-#	if CALC_ERROR
+#	if defined(CALC_ERROR)
 	FILE	*fd_e;	/* error file */
 
-	fd_e = fopen(LOCAL_D PLOT_D DATA_D ERROR_F, "w");
+	if (getenv("OS"))
+		fd_e = fopen(WLOCAL_D WPLOT_D WDATA_D ERROR_F, "w");
+	else
+		fd_e = fopen(LOCAL_D PLOT_D DATA_D ERROR_F, "w");
 	u.error = NULL;
 	u.trunc = NULL;
 	if (!(u.error = (double*)malloc((info.M + 1) * sizeof(double))) ||
@@ -59,7 +65,7 @@ int		main(void)
 	{
 		if (!(u.new = (double*)malloc((info.N + 1) * sizeof(double))))
 		{
-#			if CALC_ERROR
+#			if defined(CALC_ERROR)
 			free(u.error);
 			free(u.trunc);
 			fclose(fd_e);
@@ -72,7 +78,7 @@ int		main(void)
 		calc_u_new(&u, &info, k);
 		print_heat_file(fd_u, u.new, k, &info);
 
-#		if CALC_ERROR
+#		if defined(CALC_ERROR)
 		calc_error(&u, &info, &solution, k);
 #		endif
 
@@ -84,7 +90,7 @@ int		main(void)
 	free(u.old);
 	fclose(fd_u);
 
-#	if CALC_ERROR
+#	if defined(CALC_ERROR)
 	print_error_file(fd_e, u.error, u.trunc_max, &info);
 	free(u.error);
 	free(u.trunc);
@@ -101,7 +107,7 @@ void	print_heat_file(FILE *fd, double *u, int k, data *info)
 	i = 0;
 	while (i <= info->N)
 	{
-		fprintf(fd, "%f %f %f\n", k * info->d_t, i * info->d_x, u[i]);
+		fprintf(fd, "%e %e %e\n", k * info->d_t, i * info->d_x, u[i]);
 		i++;
 	}
 }
@@ -113,7 +119,7 @@ void    print_error_file(FILE *fd, double *err, double trunc, data *info)
 	k = 0;
 	while (k <= info->M)
 	{
-		fprintf(fd, "%f %f %f\n", k * info->d_t, err[k], trunc);
+		fprintf(fd, "%e %e %e\n", k * info->d_t, err[k], trunc);
 		k++;
 	}
 }

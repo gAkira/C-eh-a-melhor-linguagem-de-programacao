@@ -16,30 +16,34 @@ bool			calc_error(heat *u, data *info, double (*func)(double, double), int k)
 	i = 0;
 	if (!(err = (double*)malloc((info->N + 1) * sizeof(double))))
 		return (false);
-	if (k && !(trunc = (double*)malloc((info->N - 1) * sizeof(double))))
+	if (k < info->M && !(trunc = (double*)malloc((info->N - 1) * sizeof(double))))
 	{
 		free(err);
 		return (false);
 	}
 	while (i <= info->N)
 	{
-		err[i] = abs((k ? u->new[i] : u->old[i]) -
-									func(k * info->d_t, i * info->d_x));
-		if (k > 0 && k <= info->M && i > 0 && i < info->N)
-			trunc[i - 1] = abs(((u->new[i] - u->old[i]) / info->d_t) -
-				((u->old[i - 1] - 2 * u->old[i] + u->old[i + 1]) /
-					pow(info->d_x, 2)) -
+		err[i] = fabs(func(k * info->d_t, i * info->d_x) -
+						(k ? u->new[i] : u->old[i]));
+		if (k < info->M && i > 0 && i < info->N)
+			trunc[i - 1] = fabs(((func((k + 1) * info->d_t, i * info->d_x) -
+					func(k * info->d_t, i * info->d_x)) / info->d_t) -
+					((func(k * info->d_t, (i - 1) * info->d_x) -
+					2 * func(k * info->d_t, i * info->d_x) + 
+					func(k * info->d_t, (i + 1) * info->d_x)) /
+					pow(info->d_x, 2.0)) -
 					info->f((k - 1) * info->d_t, i * info->d_x));
 		i++;
 	}
 	u->error[k] = max_err(err, info->N + 1);
-	if (k)
-		u->trunc[k - 1] = max_err(trunc, info->N - 1);
-	if (k == info->M)
+	if (k < info->M)
+	{
+		u->trunc[k] = max_err(trunc, info->N - 1);
+		free(trunc);
+	}
+	else
 		u->trunc_max = max_err(u->trunc, info->M);
 	free(err);
-	if (k)
-		free (trunc);
 	return (true);
 }
 

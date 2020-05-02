@@ -1,4 +1,16 @@
-NAME	=	ep1
+ifdef OS
+	NAME	=	ep1.exe
+	RM	=	del /Q
+	RMDIR	=	rmdir	/S/Q
+	MKDIR	=	if not exist "$1" (mkdir $1)
+	FixPath	=	$(subst /,\,$1)
+else
+	NAME	=	ep1
+	RM	=	rm -f
+	RMDIR	= $(RM) -r
+	MKDIR	=	mkdir -p $1
+	FixPath =	$1
+endif
 
 CC		=	gcc
 CC_FLAG	=	-Wall -Wextra -Werror
@@ -6,10 +18,11 @@ CC_FLAG	=	-Wall -Wextra -Werror
 LIB		=	m
 INCLUDE	=	inc
 PLOT_DIR=	plot
-SAVE_DIR=	$(PLOT_DIR)/data
+SAVE_DIR=	$(call FixPath,$(PLOT_DIR)/data)
 
 SRC_DIR	=	src
-SRC		=	$(SRC_DIR)/main.c				\
+SRC		=	$(call FixPath,					\
+			$(SRC_DIR)/main.c				\
 			$(SRC_DIR)/fonte.c				\
             $(SRC_DIR)/fronteira.c          \
 			$(SRC_DIR)/solution.c			\
@@ -18,41 +31,42 @@ SRC		=	$(SRC_DIR)/main.c				\
 			$(SRC_DIR)/init_value.c			\
 			$(SRC_DIR)/apply_init_value.c	\
 			$(SRC_DIR)/calc_u_new.c			\
-			$(SRC_DIR)/calc_error.c
+			$(SRC_DIR)/calc_error.c			)
 
 OBJ_DIR	=	obj
-OBJ		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
+OBJ		=	$(call FixPath,					\
+			$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC)))
 
 all:	$(NAME)
 	@echo "Voila:"
-	@./$<
+	@$(call FixPath,./$<)
 
 $(NAME):	$(OBJ)
 	@echo "Gerando executavel..."
-	@mkdir -p $(SAVE_DIR)
+	@$(call MKDIR,$(SAVE_DIR))
 	@$(CC) $(CC_FLAG) $^ -o $@ -lm
 
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
+$(call FixPath,$(OBJ_DIR)/%.o):	$(call FixPath,$(SRC_DIR)/%.c)
 	@echo "Criando objetos (.o)"
-	@mkdir -p $(OBJ_DIR)
+	@$(call MKDIR,$(OBJ_DIR))
 	@$(CC) $(CC_FLAG) -I$(INCLUDE) -c $< -o $@ -l$(LIB)
 
 plot: heat error
 
 heat:
-	@make -C $(PLOT_DIR) $@
+	@$(MAKE) -C $(PLOT_DIR) $@
 
 error:
-	@make -C $(PLOT_DIR) $@
+	@$(MAKE) -C $(PLOT_DIR) $@
 
 clean:
 	@echo "Limpando..."
-	@make -C $(PLOT_DIR) $@
-	@$(RM) -r $(OBJ_DIR)
+	@$(MAKE) -C $(PLOT_DIR) $@
+	@$(RMDIR) $(OBJ_DIR)
 
 fclean:	clean
 	@echo "Novinho em folha!"
-	@make -C $(PLOT_DIR) $@
+	@$(MAKE) -C $(PLOT_DIR) $@
 	@$(RM) $(NAME)
 
 re: fclean all

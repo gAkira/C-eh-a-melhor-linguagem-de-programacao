@@ -20,7 +20,7 @@ int		main(int argc, char *argv[])
 	if (argc == 2 && argv[1][0] == '0')
 	{
 		fprintf(gnuplot, "set title 'HEAT MAP' \n");
-		fprintf(gnuplot, "set dgrid 80,80 \n");
+		fprintf(gnuplot, "set dgrid %d,%d \n", GRID, GRID);
 		fprintf(gnuplot, "set hidden3d \n");
 		fprintf(gnuplot, "unset key \n");
 		fprintf(gnuplot, "set xrange [0:%f] \n", T);
@@ -36,8 +36,8 @@ int		main(int argc, char *argv[])
 		fprintf(gnuplot, "set xrange [0:%f] \n", T);
 		fprintf(gnuplot, "set xlabel 'time' \n");
 		fprintf(gnuplot, "set ylabel 'error' \n");
-		fprintf(gnuplot, "plot '%s' u 1:2 w l title 'diff', \
-						'%s' u 1:3 w l title 'truncation'\n",
+		fprintf(gnuplot, "plot '%s' u 1:2 w l lw 3 title 'diff', \
+						'%s' u 1:3 w l lw 3 title 'truncation'\n",
 						LOCAL_D DATA_D ERROR_F, LOCAL_D DATA_D ERROR_F);
 		fflush(gnuplot);
 	}

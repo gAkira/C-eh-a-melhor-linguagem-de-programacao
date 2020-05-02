@@ -7,5 +7,11 @@
 double	init_value(double x)
 {
 	(void)x;
+#	if defined(EX_A_FAKE)
 	return (0);
+#	elif defined(EX_A)
+	return (pow(x, 2.0) * pow(1 - x, 2.0));
+#	else
+	return (-10E6);
+#	endif
 }
