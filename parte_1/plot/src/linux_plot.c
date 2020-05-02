@@ -12,6 +12,9 @@
 
 #include "ep1.h"
 
+extern int	GRID_N;
+extern int	GRID_M;
+
 int		main(int argc, char *argv[])
 {
 	FILE	*gnuplot;
@@ -20,7 +23,7 @@ int		main(int argc, char *argv[])
 	if (argc == 2 && argv[1][0] == '0')
 	{
 		fprintf(gnuplot, "set title 'HEAT MAP' \n");
-		fprintf(gnuplot, "set dgrid %d,%d \n", GRID, GRID);
+		fprintf(gnuplot, "set dgrid %d,%d \n", GRID_M, GRID_N);
 		fprintf(gnuplot, "set hidden3d \n");
 		fprintf(gnuplot, "unset key \n");
 		fprintf(gnuplot, "set xrange [0:%f] \n", T);

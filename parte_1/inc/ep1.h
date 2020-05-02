@@ -26,7 +26,8 @@
 //# define EX_B
 //# define EX_C
 
-# define GRID 40
+int	GRID_N;
+int	GRID_M;
 
 # define LOCAL_D "./"
 # define PLOT_D "plot/"
