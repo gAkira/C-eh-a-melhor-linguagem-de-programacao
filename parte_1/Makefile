@@ -5,27 +5,31 @@ CC_FLAG	=	-Wall -Wextra -Werror
 
 LIB		=	m
 INCLUDE	=	inc
+PLOT_DIR=	plot
+SAVE_DIR=	$(PLOT_DIR)/data
 
 SRC_DIR	=	src
 SRC		=	$(SRC_DIR)/main.c				\
 			$(SRC_DIR)/fonte.c				\
             $(SRC_DIR)/fronteira.c          \
+			$(SRC_DIR)/solution.c			\
 			$(SRC_DIR)/user_input.c			\
 			$(SRC_DIR)/process_info.c		\
 			$(SRC_DIR)/init_value.c			\
 			$(SRC_DIR)/apply_init_value.c	\
-			$(SRC_DIR)/calc_u_new.c
+			$(SRC_DIR)/calc_u_new.c			\
+			$(SRC_DIR)/calc_error.c
 
 OBJ_DIR	=	obj
 OBJ		=	$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 
 all:	$(NAME)
 	@echo "Voila:"
-	@mkdir -p plot
 	@./$<
 
 $(NAME):	$(OBJ)
 	@echo "Gerando executavel..."
+	@mkdir -p $(SAVE_DIR)
 	@$(CC) $(CC_FLAG) $^ -o $@ -lm
 
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
@@ -33,12 +37,22 @@ $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CC_FLAG) -I$(INCLUDE) -c $< -o $@ -l$(LIB)
 
+plot: heat error
+
+heat:
+	@make -C $(PLOT_DIR) $@
+
+error:
+	@make -C $(PLOT_DIR) $@
+
 clean:
 	@echo "Limpando..."
+	@make -C $(PLOT_DIR) $@
 	@$(RM) -r $(OBJ_DIR)
 
 fclean:	clean
 	@echo "Novinho em folha!"
+	@make -C $(PLOT_DIR) $@
 	@$(RM) $(NAME)
 
 re: fclean all

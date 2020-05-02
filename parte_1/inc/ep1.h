@@ -19,6 +19,13 @@
 # include <stdlib.h>
 
 # define T 1.0
+# define CALC_ERROR true
+
+# define LOCAL_D "./"
+# define PLOT_D "plot/"
+# define DATA_D "data/"
+# define HEAT_F "bololo.haha"
+# define ERROR_F "erroooo.ou"
 
 typedef struct
 {
@@ -36,8 +43,12 @@ typedef struct
 {
     double	*old;
     double	*new;
+	double	*error;
+	double	*trunc;
+	double	trunc_max;
 } heat;
 
+double	solution(double t, double x);
 double	fonte(double t, double x);
 double	fronteira_1(double t);
 double	fronteira_2(double t);
@@ -48,5 +59,6 @@ void	process_info(data *info, double (*func)(double, double),
 						double (*frnt_1)(double), double (*frnt_2)(double));
 void	apply_init_value(heat *u, data *info, double (*func)(double)); 
 void	calc_u_new(heat *u, data *info, int k);
+bool	calc_error(heat *u, data *info, double (*func)(double, double), int k);
 
 #endif
