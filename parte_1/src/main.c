@@ -10,7 +10,7 @@
 ** 10374480                    `---'         '-----'      `--------`'---'     **  
 \******************************************************************************/
 
-#include "ep1.h"
+#include "../inc/ep1.h"
 
 void    print_heat_file(FILE *fd, double *u, int k, data *info);
 void    print_error_file(FILE *fd, double *err, double trunc, data *info);

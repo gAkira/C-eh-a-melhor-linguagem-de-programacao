@@ -17,7 +17,6 @@ CC		=	gcc
 CC_FLAG	=	-Wall -Wextra -Werror
 
 LIB		=	m
-INCLUDE	=	$(call FixPath,../inc)
 DATA_DIR=	data
 
 SRC_DIR	=	src
@@ -34,11 +33,11 @@ OBJ		=	$(call FixPath,						\
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(CC_FLAG) -I$(INCLUDE) $^ -o $@ -l$(LIB)
+	@$(CC) $(CC_FLAG) $^ -o $@ -l$(LIB)
 
 $(call FixPath,$(OBJ_DIR)/%.o): $(call FixPath,$(SRC_DIR)/%.c)
 	@$(call MKDIR,$(OBJ_DIR))
-	@$(CC) $(CC_FLAG) -I$(INCLUDE) -c $< -o $@ -l$(LIB)
+	@$(CC) $(CC_FLAG) -c $< -o $@ -l$(LIB)
 
 heat: all
 	@$(call FixPath,./$(NAME) 0)

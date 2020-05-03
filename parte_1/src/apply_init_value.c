@@ -1,4 +1,4 @@
-#include "ep1.h"
+#include "../inc/ep1.h"
 
 /*
 ** applies the initial heat distribution u_0 (u.old)

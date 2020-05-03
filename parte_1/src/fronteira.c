@@ -1,4 +1,4 @@
-#include "ep1.h"
+#include "../inc/ep1.h"
 
 /*
 ** write the functions that describe your boundary conditions

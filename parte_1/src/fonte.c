@@ -1,4 +1,4 @@
-#include "ep1.h"
+#include "../inc/ep1.h"
 
 /*
 ** write the function that describes your heat source

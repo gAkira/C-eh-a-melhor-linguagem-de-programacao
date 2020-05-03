@@ -1,6 +1,6 @@
 ifdef OS
 	NAME	=	ep1.exe
-	RM	=	del /Q
+	RM		=	del /Q /F
 	RMDIR	=	rmdir	/S/Q
 	MKDIR	=	if not exist "$1" (mkdir $1)
 	FixPath	=	$(subst /,\,$1)
@@ -16,7 +16,6 @@ CC		=	gcc
 CC_FLAG	=	-Wall -Wextra -Werror
 
 LIB		=	m
-INCLUDE	=	inc
 PLOT_DIR=	plot
 SAVE_DIR=	$(call FixPath,$(PLOT_DIR)/data)
 
@@ -49,7 +48,7 @@ $(NAME):	$(OBJ)
 $(call FixPath,$(OBJ_DIR)/%.o):	$(call FixPath,$(SRC_DIR)/%.c)
 	@echo "Criando objetos (.o)"
 	@$(call MKDIR,$(OBJ_DIR))
-	@$(CC) $(CC_FLAG) -I$(INCLUDE) -c $< -o $@ -l$(LIB)
+	@$(CC) $(CC_FLAG) -c $< -o $@ -l$(LIB)
 
 plot: heat error
 
@@ -61,12 +60,12 @@ error:
 
 clean:
 	@echo "Limpando..."
-	@$(MAKE) -C $(PLOT_DIR) $@
 	@$(RMDIR) $(OBJ_DIR)
+	@$(MAKE) -C $(PLOT_DIR) $@
 
 fclean:	clean
 	@echo "Novinho em folha!"
-	@$(MAKE) -C $(PLOT_DIR) $@
 	@$(RM) $(NAME)
+	@$(MAKE) -C $(PLOT_DIR) $@
 
 re: fclean all

@@ -1,4 +1,4 @@
-#include "ep1.h"
+#include "../inc/ep1.h"
 
 /*
 ** calculates the error between the result that we got and the solution
@@ -23,8 +23,10 @@ bool			calc_error(heat *u, data *info, double (*func)(double, double), int k)
 	}
 	while (i <= info->N)
 	{
-		err[i] = fabs(func(k * info->d_t, i * info->d_x) -
-						(k ? u->new[i] : u->old[i]));
+		err[i] = fmax(fabs(func(k * info->d_t, i * info->d_x) -
+						(k ? u->new[i] : u->old[i])),
+						fabs((k ? u->new[i] : u->old[i]) -
+						func(k * info->d_t, i * info->d_x)));
 		if (k < info->M && i > 0 && i < info->N)
 			trunc[i - 1] = fabs(((func((k + 1) * info->d_t, i * info->d_x) -
 					func(k * info->d_t, i * info->d_x)) / info->d_t) -
