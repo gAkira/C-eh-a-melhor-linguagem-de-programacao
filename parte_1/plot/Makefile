@@ -21,9 +21,16 @@ DATA_DIR=	data
 
 SRC_DIR	=	src
 ifdef OS
-	SRC		=	$(call FixPath,$(SRC_DIR)/windows_plot.c)
+	SRC		=	$(call FixPath,						\
+				$(SRC_DIR)/windows_plot.c			\
+				$(SRC_DIR)/get_next_line.c			\
+				$(SRC_DIR)/get_next_line_utils.c	)
 else
-	SRC		=	$(call FixPath,$(SRC_DIR)/linux_plot.c)
+	SRC		=	$(call FixPath,						\
+				$(SRC_DIR)/linux_plot.c				\
+				$(SRC_DIR)/get_next_line.c			\
+				$(SRC_DIR)/get_next_line_utils.c	)
+
 endif
 
 OBJ_DIR	=	obj

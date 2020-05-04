@@ -110,6 +110,7 @@ void	print_heat_file(FILE *fd, double *u, int k, data *info)
 		fprintf(fd, "%e %e %e\n", k * info->d_t, i * info->d_x, u[i]);
 		i++;
 	}
+	fprintf(fd, "\n");
 }
 
 void    print_error_file(FILE *fd, double *err, double trunc, data *info)
