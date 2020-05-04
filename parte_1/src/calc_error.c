@@ -13,7 +13,6 @@ bool			calc_error(heat *u, data *info, double (*func)(double, double), int k)
 	double	*err;
 	double	*trunc;
 
-	i = 0;
 	if (!(err = (double*)malloc((info->N + 1) * sizeof(double))))
 		return (false);
 	if (k < info->M && !(trunc = (double*)malloc((info->N - 1) * sizeof(double))))
@@ -21,7 +20,8 @@ bool			calc_error(heat *u, data *info, double (*func)(double, double), int k)
 		free(err);
 		return (false);
 	}
-	while (i <= info->N)
+	i = 1;
+	while (i > 0 && i < info->N)
 	{
 		err[i] = fmax(fabs(func(k * info->d_t, i * info->d_x) -
 						(k ? u->new[i] : u->old[i])),

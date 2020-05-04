@@ -21,13 +21,11 @@
 # define T 1.0
 # define CALC_ERROR
 
-//# define EX_A_FAKE
+# define EX_A_FAKE
 //# define EX_A
-# define EX_B
-//# define EX_C
-
-int	GRID_N;
-int	GRID_M;
+//# define EX_B
+//# define EX_C_1
+//# define EX_C_2
 
 # define LOCAL_D "./"
 # define PLOT_D "plot/"
@@ -37,6 +35,16 @@ int	GRID_M;
 # define WDATA_D "data\\"
 # define HEAT_F "bololo.haha"
 # define ERROR_F "erroooo.ou"
+
+# if defined(EX_C_1) || defined(EX_C_2)
+#  define P 0.25
+#  if defined(CALC_ERROR)
+#   undef CALC_ERROR
+#  endif
+# endif
+
+int	USER_N;
+int	USER_M;
 
 typedef struct
 {
