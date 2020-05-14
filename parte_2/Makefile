@@ -27,6 +27,7 @@ SRC		=	$(call FixPath,					\
 			$(SRC_DIR)/solution.c			\
 			$(SRC_DIR)/user_input.c			\
 			$(SRC_DIR)/process_info.c		\
+			$(SRC_DIR)/ldl_decomp.c			\
 			$(SRC_DIR)/init_value.c			\
 			$(SRC_DIR)/apply_init_value.c	\
 			$(SRC_DIR)/calc_u_new.c			\

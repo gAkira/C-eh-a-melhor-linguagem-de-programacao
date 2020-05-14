@@ -17,15 +17,7 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
-
-# define T 1.0
-# define CALC_ERROR
-
-//# define EX_A_FAKE
-# define EX_A
-//# define EX_B
-//# define EX_C_1
-//# define EX_C_2
+# include "../../p1.h"
 
 # define LOCAL_D "./"
 # define PLOT_D "plot/"
@@ -33,11 +25,13 @@
 # define WLOCAL_D ".\\"
 # define WPLOT_D "plot\\"
 # define WDATA_D "data\\"
-# define HEAT_F "bololo.haha"
-# define ERROR_F "erroooo.ou"
 
 # if defined(EX_C_1) || defined(EX_C_2)
-#  define P 0.25
+#  if defined(P_fonte)
+#   define P P_fonte
+#  else
+#   define P 0.25
+#  endif
 #  if defined(CALC_ERROR)
 #   undef CALC_ERROR
 #  endif
