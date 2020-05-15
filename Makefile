@@ -31,9 +31,10 @@ all:
 	@echo "Genericos:"
 	@echo "    Usar os comandos especificos sem definir uma parte 'X' fara com que este"
 	@echo "    comando se aplique para ambas partes do EP."
-	@echo "    Exemplo: $$> plot"
+	@echo "    Exemplo: $$> make plot"
 	@echo "        Este comando executara tanto plot1 quanto plot2"
 	@echo ""
+	@echo "Extra:"
 	@echo "    nyan"
 
 p: p1 p2
@@ -73,6 +74,23 @@ clean2:
 	@$(MAKE) -C $(PARTE_2_DIR) clean
 
 fclean: fclean1 fclean2
+
+nyan:
+	@echo "    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"
+	@echo "    ░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░"
+	@echo "    ░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░"
+	@echo "    ░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░"
+	@echo "    ░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░"
+	@echo "    ░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░"
+	@echo "    ░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░"
+	@echo "    ░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░"
+	@echo "    ░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░"
+	@echo "    ░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░"
+	@echo "    ░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░"
+	@echo "    ░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░"
+	@echo "    ░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░"
+	@echo "    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"
+
 
 fclean1:
 	@$(MAKE) -C $(PARTE_1_DIR) fclean

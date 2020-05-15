@@ -6,8 +6,8 @@
 
 void	user_input(data *info)
 {
-	printf("Digite um valor para N:\t");
+	printf("Digite um valor para N: ");
 	scanf("%d", &(info->N));
-	printf("Digite um valor para M:\t");
-	scanf("%d", &(info->M));
+	printf("Digite um valor para lambda: ");
+	scanf("%lf", &(info->lambda));
 }

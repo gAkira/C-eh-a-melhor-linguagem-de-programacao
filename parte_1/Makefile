@@ -1,11 +1,11 @@
 ifdef OS
-	NAME	=	ep1.exe
+	NAME	=	ep1_p1.exe
 	RM		=	del /Q /F
 	RMDIR	=	rmdir	/S/Q
 	MKDIR	=	if not exist "$1" (mkdir $1)
 	FixPath	=	$(subst /,\,$1)
 else
-	NAME	=	ep1
+	NAME	=	ep1_p1
 	RM	=	rm -f
 	RMDIR	= $(RM) -r
 	MKDIR	=	mkdir -p $1
