@@ -27,11 +27,6 @@
 # define WDATA_D "data\\"
 
 # if defined(EX_C_1) || defined(EX_C_2)
-#  if defined(P_fonte) && (P_fonte > 0.0 && P_fonte < 1.0)
-#   define P P_fonte
-#  else
-#   define P 0.25
-#  endif
 #  if defined(CALC_ERROR)
 #   undef CALC_ERROR
 #  endif

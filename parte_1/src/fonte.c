@@ -44,15 +44,20 @@ double			fonte(double t, double x)
 #if defined(EX_C_1) || defined(EX_C_2)
 static double	r(double t)
 {
-	return (10000 * (1 - 2 * pow(t, 2.0)));
+	return (10000 * (1.0 - 2.0 * pow(t, 2.0)));
 }
 #endif
 
 #if defined(EX_C_1)
 static double	gh_1(double x)
 {
-	if((x >= (P - (double)USER_N / 2.0)) && (x <= (P + (double)USER_N / 2.0)))
-		return (1.0 / (double)USER_N);
+	double	point_p;
+	double	h;
+
+	h = 1.0 / (double)USER_N;
+	point_p = (P > 0.0 && P < 1.0) ? P : 0.25;
+	if((x >= (point_p - h / 2.0)) && (x <= (point_p + h / 2.0)))
+		return (1.0 / h);
 	return (0.0);
 }
 #endif
@@ -60,10 +65,15 @@ static double	gh_1(double x)
 #if defined(EX_C_2)
 static double	gh_2(double x)
 {
-	if (x >= (P - USER_N) && x <= P)
-		return ((1.0 / pow((double)USER_N, 2.0)) * (x - (P - (double)USER_N)));
-	else if (x > P && x <= (P + (double)USER_N))
-		return (-(1.0 / pow((double)USER_N, 2.0)) * (x - (P + (double)USER_N)));
+	double	point_p;
+	double	h;
+
+	h = 1.0 / (double)USER_N;
+	point_p = (P > 0.0 && P < 1.0) ? P : 0.25;
+	if (x >= (point_p - h) && x <= point_p)
+		return ((1.0 / pow(h, 2.0)) * (x - (point_p - h)));
+	else if (x > point_p && x <= (point_p + h))
+		return (-(1.0 / pow(h, 2.0)) * (x - (point_p + h)));
 	else
 		return (0.0);
 }

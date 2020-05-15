@@ -24,17 +24,18 @@
 // Define qual exercicio da primeira parte deseja computar
 //-----------------------------------------------------------------------------
 //# define EX_A_FAKE
-# define EX_A
+//# define EX_A
 //# define EX_B
-//# define EX_C_1
+# define EX_C_1
 //# define EX_C_2
 
 // Define o ponto da fonte puntual aplicada (valido em EX_C_x)
 //-----------------------------------------------------------------------------
-# define P_fonte 0.25
+# define P 0.25
 
 
 // Define o nome do arquivo do grafico de calor e de erro, respectivamente
+// Obs: Salvo em ./parte_1/plot/data/
 //-----------------------------------------------------------------------------
 # define HEAT_F "bololo.haha"
 # define ERROR_F "erroooo.ou"

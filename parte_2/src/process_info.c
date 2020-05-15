@@ -14,7 +14,7 @@ void	process_info(data *info, double (*func)(double, double),
 	USER_M = info->M;
 	info->d_x = 1.0 / info->N;
 	info->d_t = T / info->M;
-	info->lambda = (info->d_t)/(pow(info->d_x, 2.0));
+	info->lambda = (info->d_t) / (pow(info->d_x, 2.0));
 	info->f = func;
     info->g1 = frnt_1;
     info->g2 = frnt_2;

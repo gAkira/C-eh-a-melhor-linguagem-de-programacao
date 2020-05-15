@@ -21,8 +21,9 @@ void	calc_u_new(heat *u, data *info, int k)
 #		if defined(EULER)
 		lmbd = info->lambda;
 		z[i - 1] = u->old[i] + info->d_t * info->f(k * info->d_t, i * info->d_x)
-				+ (i == info->N - 1 ? lmbd * u->new[info->N] : 0.0) 
-				+ (i == 1 ? lmbd * u->new[0] : -u->L[i - 2] * z[i - 2]);
+				+ (i == (info->N - 1) ? lmbd * info->g2(k * info->d_t) : 0.0) 
+				+ (i == 1 ? lmbd * info->g1(k * info->d_t) :
+							-(u->L[i - 2] * z[i - 2]));
 #		elif defined(CRANK_NICOLSON)
 		lmbd = info->lambda / 2.0;
 		z[i - 1] = (1.0 - 2.0 * lmbd) * u->old[i]
@@ -44,7 +45,8 @@ void	calc_u_new(heat *u, data *info, int k)
 	i = info->N - 1;
 	while (i >= 1)
 	{
-		u->new[i] = z[i - 1] + (i == info->N - 1 ? 0.0 : -(u->L[i - 1] * z[i]));
+		u->new[i] = z[i - 1] + (i == (info->N - 1) ? 0.0 :
+										-(u->L[i - 1] * u->new[i + 1]));
 		i--;
 	}
 	free(z);
