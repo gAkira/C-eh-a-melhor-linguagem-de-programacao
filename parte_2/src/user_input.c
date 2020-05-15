@@ -6,14 +6,15 @@
 
 void	user_input(data *info)
 {
-	int		i;
-
 	printf("Digite um valor para N:\t");
 	scanf("%d", &(info->N));
+
 #	if defined(EULER) || defined(CRANK_NICOLSON)
 	printf("Digite um valor para M:\t");
 	scanf("%d", &(info->M));
 #	else
+	int		i;
+	
 	if ((info->A_D = (double*)malloc((info->N - 1) * sizeof(double))))
 	{
 		printf("Digite os valores para a diagonal principal:\n");
@@ -37,4 +38,5 @@ void	user_input(data *info)
 		}
 	}
 #	endif
+
 }

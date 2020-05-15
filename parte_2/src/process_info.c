@@ -18,4 +18,49 @@ void	process_info(data *info, double (*func)(double, double),
 	info->f = func;
     info->g1 = frnt_1;
     info->g2 = frnt_2;
+
+#	if defined(EULER)
+	int		i;
+
+	if ((info->A_D = (double*)malloc((info->N - 1) * sizeof(double))))
+	{
+		i = 1;
+		while (i < info->N)
+		{
+			info->A_D[i - 1] = 1.0 + 2 * info->lambda;
+			i++;
+		}
+	}
+	if ((info->A_L = (double*)malloc((info->N - 2) * sizeof(double))))
+	{
+		i = 1;
+		while (i < (info->N - 1))
+		{
+			info->A_L[i - 1] = -info->lambda;
+			i++;
+		}
+	}
+#	elif defined(CRANK_NICOLSON)
+	int		i;
+
+	if ((info->A_D = (double*)malloc((info->N - 1) * sizeof(double))))
+	{
+		i = 1;
+		while (i < info->N)
+		{
+			info->A_D[i - 1] = 1.0 + info->lambda;
+			i++;
+		}
+	}
+	if ((info->A_L = (double*)malloc((info->N - 2) * sizeof(double))))
+	{
+		i = 1;
+		while (i < (info->N - 1))
+		{
+			info->A_L[i - 1] = -(info->lambda / 2.0);
+			i++;
+		}
+	}
+#	endif
+
 }
