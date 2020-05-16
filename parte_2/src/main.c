@@ -15,6 +15,7 @@
 void	print_ldl(heat *u, data *info);
 void    print_heat_file(FILE *fd, double *u, int k, data *info);
 void    print_error_file(FILE *fd, double *err, double trunc, data *info);
+void	print_info(heat *u, data *info);
 
 int		main(void)
 {
@@ -109,6 +110,7 @@ int		main(void)
 	fclose(fd_e);
 #	endif
 
+	print_info(&u, &info);
 	return (0);
 }
 
@@ -158,3 +160,43 @@ void    print_error_file(FILE *fd, double *err, double trunc, data *info)
 		k++;
 	}
 }
+
+void	print_info(heat *u, data *info)
+{
+
+	(void)u;
+	printf("+----------------------+------------------------------------------+\n");
+
+#	if defined(EULER)
+	printf("| %-20s | %-40s |\n", "Metodo", "Implicito: Euler");
+#	elif defined(CRANK_NICOLSON)
+	printf("| %-20s | %-40s |\n", "Metodo", "Implicito: Crank-Nicolson");
+#	endif
+
+	printf("+----------------------+------------------------------------------+\n");
+
+#	if defined(EX_A_FAKE)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.a - Validacao");
+#	elif defined(EX_A)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.a");
+#	elif defined(EX_B)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.b");
+#	elif defined(EX_C_1)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.c - Distr. 'const.' no dominio");
+#	elif defined(EX_C_2)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.c - Distr. 'linear' no dominio");
+#	endif
+
+	printf("+----------------------+------------------------------------------+\n");
+	printf("| %-20s | %-40d |\n", "T", (int)T);
+	printf("| %-20s | %-40d |\n", "N", info->N);
+	printf("| %-20s | %-40d |\n", "M", info->M);
+	printf("| %-20s | %-40.4lf |\n", "lambda", info->lambda);
+
+#	if defined(EX_C_1) || defined(EX_C_2)
+	printf("| %-20s | %-40.4lf |\n", "P", P > 0.0 && P < 1.0 ? P : 0.25);
+#	endif
+
+	printf("+----------------------+------------------------------------------+\n");
+}
+

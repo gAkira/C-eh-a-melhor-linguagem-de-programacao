@@ -14,6 +14,7 @@
 
 void    print_heat_file(FILE *fd, double *u, int k, data *info);
 void    print_error_file(FILE *fd, double *err, double trunc, data *info);
+void	print_info(heat *u, data *info);
 
 int		main(void)
 {
@@ -97,6 +98,7 @@ int		main(void)
 	fclose(fd_e);
 #	endif
 
+	print_info(&u, &info);
 	return (0);
 }
 
@@ -123,4 +125,41 @@ void    print_error_file(FILE *fd, double *err, double trunc, data *info)
 		fprintf(fd, "%e %e %e\n", k * info->d_t, err[k], trunc);
 		k++;
 	}
+}
+
+void	print_info(heat *u, data *info)
+{
+
+	(void)u;
+	printf("+----------------------+------------------------------------------+\n");
+	printf("| %-20s | %-40s |\n", "Metodo", "Explicito");
+	printf("+----------------------+------------------------------------------+\n");
+
+#	if defined(EX_A_FAKE)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.a - Validacao");
+	printf("+----------------------+------------------------------------------+\n");
+#	elif defined(EX_A)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.a");
+	printf("+----------------------+------------------------------------------+\n");
+#	elif defined(EX_B)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.b");
+	printf("+----------------------+------------------------------------------+\n");
+#	elif defined(EX_C_1)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.c - Distr. 'const.' no dominio");
+	printf("+----------------------+------------------------------------------+\n");
+#	elif defined(EX_C_2)
+	printf("| %-20s | %-40s |\n", "Exercicio", "1.c - Distr. 'linear' no dominio");
+	printf("+----------------------+------------------------------------------+\n");
+#	endif
+
+	printf("| %-20s | %-40d |\n", "T", (int)T);
+	printf("| %-20s | %-40d |\n", "N", info->N);
+	printf("| %-20s | %-40d |\n", "M", info->M);
+	printf("| %-20s | %-40.4lf |\n", "lambda", info->lambda);
+
+#	if defined(EX_C_1) || defined(EX_C_2)
+	printf("| %-20s | %-40.4lf |\n", "P", P > 0.0 && P < 1.0 ? P : 0.25);
+#	endif
+
+	printf("+----------------------+------------------------------------------+\n");
 }
