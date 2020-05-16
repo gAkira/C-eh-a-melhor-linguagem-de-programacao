@@ -52,6 +52,7 @@ typedef struct
     double	*old;
     double	*new;
 	double	*error;
+	double	error_max;
 	double	*trunc;
 	double	trunc_max;
 } heat;

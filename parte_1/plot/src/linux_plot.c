@@ -52,8 +52,8 @@ int		main(int argc, char *argv[])
 		fprintf(gnuplot, "set xrange [0:%f] \n", T);
 		fprintf(gnuplot, "set xlabel 'time' \n");
 		fprintf(gnuplot, "set ylabel 'error' \n");
-		fprintf(gnuplot, "plot '%s' u 1:2:3 w l lw 3 title 'diff',		\
-							'' u 1:3 w l lw 3 title 'truncation' \n",	\
+		fprintf(gnuplot, "plot '%s' u 1:3 w l lw 3 title 'error_m_a_x', \
+							'' u 1:2 pt 7 ps 0.5 title 'error_l_o_c_a_l' \n",	\
 							LOCAL_D DATA_D ERROR_F);
 		fflush(gnuplot);
 	}

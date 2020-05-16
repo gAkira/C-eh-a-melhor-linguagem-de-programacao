@@ -13,7 +13,7 @@
 #include "../inc/ep1.h"
 
 void    print_heat_file(FILE *fd, double *u, int k, data *info);
-void    print_error_file(FILE *fd, double *err, double trunc, data *info);
+void    print_error_file(FILE *fd, heat *u, data *info);
 void	print_info(heat *u, data *info);
 
 int		main(void)
@@ -92,7 +92,7 @@ int		main(void)
 	fclose(fd_u);
 
 #	if defined(CALC_ERROR)
-	print_error_file(fd_e, u.error, u.trunc_max, &info);
+	print_error_file(fd_e, &u, &info);
 	free(u.error);
 	free(u.trunc);
 	fclose(fd_e);
@@ -115,14 +115,15 @@ void	print_heat_file(FILE *fd, double *u, int k, data *info)
 	fprintf(fd, "\n");
 }
 
-void    print_error_file(FILE *fd, double *err, double trunc, data *info)
+void    print_error_file(FILE *fd, heat *u, data *info)
 {
 	int		k;
 
 	k = 0;
 	while (k <= info->M)
 	{
-		fprintf(fd, "%e %e %e\n", k * info->d_t, err[k], trunc);
+		fprintf(fd, "%e %e %e %e\n", k * info->d_t, u->error[k], u->error_max,
+					u->trunc_max);
 		k++;
 	}
 }

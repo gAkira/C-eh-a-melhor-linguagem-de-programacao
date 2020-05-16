@@ -44,7 +44,10 @@ bool			calc_error(heat *u, data *info, double (*func)(double, double), int k)
 		free(trunc);
 	}
 	else
+	{
+		u->error_max = max_err(u->error, (info->M + 1));
 		u->trunc_max = max_err(u->trunc, info->M);
+	}
 	free(err);
 	return (true);
 }
