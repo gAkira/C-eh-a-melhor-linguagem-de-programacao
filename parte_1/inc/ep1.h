@@ -26,6 +26,29 @@
 # define WPLOT_D "plot\\"
 # define WDATA_D "data\\"
 
+# if defined(EX_A_FAKE)
+#  define HEAT_F "EXP_A_FAKE.heat"
+#  define HEAT_TITLE "TEMPERATURA - EXPLICITO: EX(A_verificacao)"
+#  define ERROR_F "EXP_A_FAKE.error"
+#  define ERROR_TITLE "ERRO - EXPLICITO: EX(A_verificacao)"
+# elif defined(EX_A)
+#  define HEAT_F "EXP_A.heat"
+#  define HEAT_TITLE "TEMPERATURA - EXPLICITO: EX(A)"
+#  define ERROR_F "EXP_A.error"
+#  define ERROR_TITLE "ERRO - EXPLICITO: EX(A)"
+# elif defined(EX_B)
+#  define HEAT_F "EXP_B.heat"
+#  define HEAT_TITLE "TEMPERATURA - EXPLICITO: EX(B)"
+#  define ERROR_F "EXP_B.error"
+#  define ERROR_TITLE "ERRO - EXPLICITO: EX(B)"
+# elif defined(EX_C_1)
+#  define HEAT_F "EXP_C_CONST.heat"
+#  define HEAT_TITLE "TEMPERATURA - EXPLICITO: EX(C_d_i_s_t_r_ _c_o_n_s_t)"
+# elif defined(EX_C_2)
+#  define HEAT_F "EXP_C_LINEAR.heat"
+#  define HEAT_TITLE "TEMPERATURA - EXPLICITO: EX(C_d_i_s_t_r_ _l_i_n_e_a_r)"
+# endif
+
 # if defined(EX_C_1) || defined(EX_C_2)
 #  if defined(CALC_ERROR)
 #   undef CALC_ERROR

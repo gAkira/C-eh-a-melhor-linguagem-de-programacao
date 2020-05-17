@@ -12,6 +12,7 @@
 
 #include "../inc/ep1.h"
 
+void	print_header_file(FILE *fd, data *info);
 void    print_heat_file(FILE *fd, double *u, int k, data *info);
 void    print_error_file(FILE *fd, heat *u, data *info);
 void	print_info(heat *u, data *info);
@@ -34,6 +35,7 @@ int		main(void)
 		fclose(fd_u);
 		return (1);
 	}
+	print_header_file(fd_u, &info);
 	apply_init_value(&u, &info, &init_value);
 	print_heat_file(fd_u, u.old, 0, &info);
 
@@ -44,6 +46,7 @@ int		main(void)
 		fd_e = fopen(WLOCAL_D WPLOT_D WDATA_D ERROR_F, "w");
 	else
 		fd_e = fopen(LOCAL_D PLOT_D DATA_D ERROR_F, "w");
+	print_header_file(fd_e, &info);
 	u.error = NULL;
 	u.trunc = NULL;
 	if (!(u.error = (double*)malloc((info.M + 1) * sizeof(double))) ||
@@ -102,6 +105,15 @@ int		main(void)
 	return (0);
 }
 
+void	print_header_file(FILE *fd, data *info)
+{
+#	if !defined(EX_C_1) && !defined(EX_C_2)
+	fprintf(fd, "#T=%.2g N=%d lambda=%.2g\n", T, info->N, info->lambda);
+#	else
+	fprintf(fd, "#T=%.2g N=%d lambda=%.2g P=%.2g\n", T, info->N, info->lambda, P);
+#	endif
+}
+
 void	print_heat_file(FILE *fd, double *u, int k, data *info)
 {
 	int		i;
@@ -156,11 +168,18 @@ void	print_info(heat *u, data *info)
 	printf("| %-20s | %-40d |\n", "T", (int)T);
 	printf("| %-20s | %-40d |\n", "N", info->N);
 	printf("| %-20s | %-40d |\n", "M", info->M);
-	printf("| %-20s | %-40.4lf |\n", "lambda", info->lambda);
+	printf("| %-20s | %-40.4g |\n", "lambda", info->lambda);
 
 #	if defined(EX_C_1) || defined(EX_C_2)
-	printf("| %-20s | %-40.4lf |\n", "P", P > 0.0 && P < 1.0 ? P : 0.25);
+	printf("| %-20s | %-40.4g |\n", "P", P > 0.0 && P < 1.0 ? P : 0.25);
 #	endif
 
 	printf("+----------------------+------------------------------------------+\n");
+
+#	if defined(CALC_ERROR)
+	printf("| %-20s | %-40.4g |\n", "Erro max truncamento", u->trunc_max);
+	printf("| %-20s | %-40.4g |\n", "Erro max", u->error_max);
+	printf("+----------------------+------------------------------------------+\n");
+#	endif
+
 }

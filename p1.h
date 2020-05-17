@@ -33,11 +33,4 @@
 //-----------------------------------------------------------------------------
 # define P 0.25
 
-
-// Define o nome do arquivo do grafico de calor e de erro, respectivamente
-// Obs: Salvo em ./parte_1/plot/data/
-//-----------------------------------------------------------------------------
-# define HEAT_F "bololo.haha"
-# define ERROR_F "erroooo.ou"
-
 #endif

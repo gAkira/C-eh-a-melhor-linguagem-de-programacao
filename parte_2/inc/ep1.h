@@ -26,6 +26,54 @@
 # define WPLOT_D "plot\\"
 # define WDATA_D "data\\"
 
+# if defined(EULER)
+#  if defined(EX_A_FAKE)
+#   define HEAT_F "EU_A_FAKE.heat"
+#   define HEAT_TITLE "TEMPERATURA - EULER: EX(A_verificacao)"
+#	define ERROR_F "EU_A_FAKE.error"
+#   define ERROR_TITLE "ERRO - EULER: EX(A_verificacao)"
+#  elif defined(EX_A)
+#   define HEAT_F "EU_A.heat"
+#   define HEAT_TITLE "TEMPERATURA - EULER: EX(A)"
+#   define ERROR_F "EU_A.error"
+#   define ERROR_TITLE "ERRO - EULER: EX(A)"
+#  elif defined(EX_B)
+#   define HEAT_F "EU_B.heat"
+#   define HEAT_TITLE "TEMPERATURA - EULER: EX(B)"
+#   define ERROR_F "EU_B.error"
+#   define ERROR_TITLE "ERRO - EULER: EX(B)"
+#  elif defined(EX_C_1)
+#   define HEAT_F "EU_C_CONST.heat"
+#   define HEAT_TITLE "TEMPERATURA - EULER: EX(C_d_i_s_t_r_ _c_o_n_s_t)"
+#  elif defined(EX_C_2)
+#   define HEAT_F "EU_C_LINEAR.heat"
+#   define HEAT_TITLE "TEMPERATURA - EULER: EX(C_d_i_s_t_r_ _l_i_n_e_a_r)"
+#  endif
+# elif defined(CRANK_NICOLSON)
+#  if defined(EX_A_FAKE)
+#   define HEAT_F "CN_A_FAKE.heat"
+#   define HEAT_TITLE "TEMPERATURA - CRANK-NICOLSON: EX(A_verificacao)"
+#   define ERROR_F "CN_A_FAKE.error"
+#   define ERROR_TITLE "ERRO - CRANK-NICOLSON: EX(A_verificacao)"
+#  elif defined(EX_A)
+#   define HEAT_F "CN_A.heat"
+#   define HEAT_TITLE "TEMPERATURA - CRANK-NICOLSON: EX(A)"
+#   define ERROR_F "CN_A.error"
+#   define ERROR_TITLE "ERRO - CRANK-NICOLSON: EX(A)"
+#  elif defined(EX_B)
+#   define HEAT_F "CN_B.heat"
+#   define HEAT_TITLE "TEMPERATURA - CRANK-NICOLSON: EX(B)"
+#   define ERROR_F "CN_B.error"
+#   define ERROR_TITLE "ERRO - CRANK-NICOLSON: EX(B)"
+#  elif defined(EX_C_1)
+#   define HEAT_F "CN_C_CONST.heat"
+#   define HEAT_TITLE "TEMPERATURA - CRANK-NICOLSON: EX(C_d_i_s_t_r_ _c_o_n_s_t)"
+#  elif defined(EX_C_2)
+#   define HEAT_F "CN_C_LINEAR.heat"
+#   define HEAT_TITLE "TEMPERATURA - CRANK-NICOLSON: EX(C_d_i_s_t_r_ _l_i_n_e_a_r)"
+#  endif
+# endif
+
 # if defined(EX_C_1) || defined(EX_C_2)
 #  if defined(CALC_ERROR)
 #   undef CALC_ERROR

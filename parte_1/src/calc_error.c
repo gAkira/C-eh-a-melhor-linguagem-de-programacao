@@ -34,7 +34,7 @@ bool			calc_error(heat *u, data *info, double (*func)(double, double), int k)
 					2 * func(k * info->d_t, i * info->d_x) + 
 					func(k * info->d_t, (i + 1) * info->d_x)) /
 					pow(info->d_x, 2.0)) -
-					info->f((k - 1) * info->d_t, i * info->d_x));
+					info->f(k * info->d_t, i * info->d_x));
 		i++;
 	}
 	u->error[k] = max_err(err, info->N + 1);

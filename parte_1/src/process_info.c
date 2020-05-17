@@ -10,7 +10,7 @@ extern int	USER_M;
 void	process_info(data *info, double (*func)(double, double),
                         double (*frnt_1)(double), double (*frnt_2)(double))
 {
-	info->M = (T * pow((double)info->N, 2.0)) / info->lambda;
+	info->M = (int)ceil((T * pow((double)info->N, 2.0)) / info->lambda);
 	USER_N = info->N;
 	USER_M = info->M;
 	info->d_x = 1.0 / (double)info->N;
