@@ -1,11 +1,9 @@
 #!/bin/sh
 
-if [ $2 = 0.25 ]; then
-	echo "$1 $2 $3" >> reducao/EXP_B_L25.red
-elif [ $2 = 0.5 ]; then
-	echo "$1 $2 $3" >> reducao/EXP_B_L50.red
-elif [ $2 = 0.51 ]; then
-	echo "$1 $2 $3" >> reducao/EXP_B_L51.red
+if [ $1 = a ]; then
+	echo "$2 $2 $3" >> reducao/CN_A.red
+elif [ $1 = b ]; then
+	echo "$2 $2 $3" >> reducao/CN_B.red
 else
-	echo "Testando" >> reducao/TESTE.red
+	echo "$2 $2 $3" >> reducao/TESTE.red
 fi
