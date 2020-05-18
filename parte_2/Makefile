@@ -67,6 +67,7 @@ clean:
 fclean:	clean
 	@echo "Novinho em folha!"
 	@$(RM) $(NAME)
+	@$(RM) $(NAME).exe
 	@$(MAKE) -C $(PLOT_DIR) $@
 
 re: fclean all

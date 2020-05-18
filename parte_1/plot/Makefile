@@ -58,5 +58,6 @@ clean:
 fclean: clean
 	@$(RMDIR) $(DATA_DIR)
 	@$(RM) $(NAME)
+	@$(RM) $(NAME).exe
 
 re: fclean all

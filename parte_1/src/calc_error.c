@@ -20,13 +20,11 @@ bool			calc_error(heat *u, data *info, double (*func)(double, double), int k)
 		free(err);
 		return (false);
 	}
-	i = 1;
-	while (i > 0 && i < info->N)
+	i = 0;
+	while (i < (info->N + 1))
 	{
-		err[i] = fmax(fabs(func(k * info->d_t, i * info->d_x) -
-						(k ? u->new[i] : u->old[i])),
-						fabs((k ? u->new[i] : u->old[i]) -
-						func(k * info->d_t, i * info->d_x)));
+		err[i] = fabs(func(k * info->d_t, i * info->d_x) -
+						(k ? u->new[i] : u->old[i]));
 		if (k < info->M && i > 0 && i < info->N)
 			trunc[i - 1] = fabs(((func((k + 1) * info->d_t, i * info->d_x) -
 					func(k * info->d_t, i * info->d_x)) / info->d_t) -

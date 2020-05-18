@@ -10,7 +10,7 @@ double	init_value(double x)
 #	if defined(EX_A_FAKE)
 	return (0.0);
 #	elif defined(EX_A)
-	return (pow(x, 2.0) * pow(1 - x, 2.0));
+	return (pow(x, 2.0) * pow(1.0 - x, 2.0));
 #	elif defined(EX_B)
 	return (exp(-x));
 #	elif defined(EX_C_1) || defined(EX_C_2)

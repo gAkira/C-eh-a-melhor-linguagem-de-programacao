@@ -90,7 +90,6 @@ int		main(void)
 		u.old = u.new;
 		k++;
 	}
-
 	free(u.old);
 	fclose(fd_u);
 
@@ -102,6 +101,7 @@ int		main(void)
 #	endif
 
 	print_info(&u, &info);
+
 	return (0);
 }
 
