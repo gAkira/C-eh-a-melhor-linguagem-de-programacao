@@ -28,9 +28,9 @@
 
 # if defined(EX_A_FAKE)
 #  define HEAT_F "EXP_A_FAKE.heat"
-#  define HEAT_TITLE "TEMPERATURA - EXPLICITO: EX(A_verificacao)"
+#  define HEAT_TITLE "TEMPERATURA - EXPLICITO: EX(A_v_a_l_i_d_a_c_a_o)"
 #  define ERROR_F "EXP_A_FAKE.error"
-#  define ERROR_TITLE "ERRO - EXPLICITO: EX(A_verificacao)"
+#  define ERROR_TITLE "ERRO - EXPLICITO: EX(A_v_a_l_i_d_a_c_a_o)"
 # elif defined(EX_A)
 #  define HEAT_F "EXP_A.heat"
 #  define HEAT_TITLE "TEMPERATURA - EXPLICITO: EX(A)"

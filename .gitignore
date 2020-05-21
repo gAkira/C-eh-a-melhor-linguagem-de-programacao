@@ -1,3 +1,5 @@
+.gitignore
+fator.sh
 */obj
 *.swp
 *.o
