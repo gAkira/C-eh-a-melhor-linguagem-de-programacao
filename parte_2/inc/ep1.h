@@ -49,7 +49,7 @@
 #   define HEAT_F "EU_C_LINEAR.heat"
 #   define HEAT_TITLE "TEMPERATURA - EULER: EX(C_d_i_s_t_r_ _l_i_n_e_a_r)"
 #  endif
-# elif defined(CRANK_NICOLSON)
+# else
 #  if defined(EX_A_FAKE)
 #   define HEAT_F "CN_A_FAKE.heat"
 #   define HEAT_TITLE "TEMPERATURA - CRANK-NICOLSON: EX(A_v_a_l_i_d_a_c_a_o)"

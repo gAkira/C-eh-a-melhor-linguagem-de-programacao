@@ -16,7 +16,7 @@ void	calc_u_new(heat *u, data *info, int k)
 	u->new[info->N] = info->g2(k * info->d_t);
 	z = (double*)malloc((info->N - 1) * sizeof(double));
 	i = 1;
-	while (i <= (info->N - 1))
+	while (i <= (info->N - 1))	/* L.z = b */
 	{
 #		if defined(EULER)
 		lmbd = info->lambda;
@@ -37,13 +37,13 @@ void	calc_u_new(heat *u, data *info, int k)
 		i++;
 	}
 	i = 1;
-	while (i <= (info->N - 1))
+	while (i <= (info->N - 1)) /* D.y = z */
 	{
 		z[i - 1] /= u->D[i - 1];
 		i++;
 	}
 	i = info->N - 1;
-	while (i >= 1)
+	while (i >= 1)	/* Lt.x = y */
 	{
 		u->new[i] = z[i - 1] + (i == (info->N - 1) ? 0.0 :
 										-(u->L[i - 1] * u->new[i + 1]));

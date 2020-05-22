@@ -29,13 +29,15 @@ int		main(void)
 	process_info(&info, &fonte, &fronteira_1, &fronteira_2);
 	ldl_decomp(&u, &info);
 
-#	if !defined(EULER) && !defined(CRANK_NICOLSON)
+#	if defined(SHOW_DECOMP)
 	print_ldl(&u, &info);
+#		if !defined(EULER) && !defined(CRANK_NICOLSON)
 	free(info.A_D);
 	free(info.A_L);
 	free(u.D);
 	free(u.L);
 	return (0);
+#		endif
 #	endif
 
 	if (getenv("OS"))
@@ -103,6 +105,8 @@ int		main(void)
 		k++;
 	}
 
+	free(info.A_D);
+	free(info.A_L);
 	free(u.old);
 	fclose(fd_u);
 
@@ -121,11 +125,12 @@ void	print_ldl(heat *u, data *info)
 {
 	int		i;
 
+	printf("\n");
 	printf("Itens da diagonal D[]:\n{");
 	i = 0;
 	while (i < (info->N - 1))
 	{
-		printf("%e", u->D[i]);
+		printf("%g", u->D[i]);
 		i == (info->N - 2) ? printf("}\n") : printf(" , ");
 		i++;
 	}
@@ -133,10 +138,11 @@ void	print_ldl(heat *u, data *info)
 	i = 0;
 	while (i < (info->N - 2))
 	{
-		printf("%e", u->L[i]);
+		printf("%g", u->L[i]);
 		i == (info->N - 3) ? printf("}\n") : printf(" , ");
 		i++;
 	}
+	printf("\n");
 }
 
 void	print_header_file(FILE *fd, data *info)
