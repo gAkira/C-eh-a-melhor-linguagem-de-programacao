@@ -52,9 +52,9 @@
 # elif defined(CRANK_NICOLSON)
 #  if defined(EX_A_FAKE)
 #   define HEAT_F "CN_A_FAKE.heat"
-#   define HEAT_TITLE "TEMPERATURA - CRANK-NICOLSON: EX(A_verificacao)"
+#   define HEAT_TITLE "TEMPERATURA - CRANK-NICOLSON: EX(A_v_a_l_i_d_a_c_a_o)"
 #   define ERROR_F "CN_A_FAKE.error"
-#   define ERROR_TITLE "ERRO - CRANK-NICOLSON: EX(A_verificacao)"
+#   define ERROR_TITLE "ERRO - CRANK-NICOLSON: EX(A_v_a_l_i_d_a_c_a_o)"
 #  elif defined(EX_A)
 #   define HEAT_F "CN_A.heat"
 #   define HEAT_TITLE "TEMPERATURA - CRANK-NICOLSON: EX(A)"

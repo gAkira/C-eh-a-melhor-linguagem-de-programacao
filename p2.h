@@ -24,8 +24,8 @@
 // Define qual metodo implicito aplicar
 // Obs: Para apenas validar a decomposicao LDLt, comente ambos metodos
 //-----------------------------------------------------------------------------
-# define EULER
-//# define CRANK_NICOLSON
+//# define EULER
+# define CRANK_NICOLSON
 
 // Define qual exercicio da primeira parte deseja computar
 //-----------------------------------------------------------------------------
