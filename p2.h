@@ -24,16 +24,16 @@
 // Define qual metodo implicito aplicar
 // Obs: Para apenas validar a decomposicao LDLt, comente ambos metodos
 //-----------------------------------------------------------------------------
-//# define EULER
-# define CRANK_NICOLSON
+# define EULER
+//# define CRANK_NICOLSON
 
 // Define qual exercicio da primeira parte deseja computar
 //-----------------------------------------------------------------------------
 //# define EX_A_FAKE
 //# define EX_A
-# define EX_B
+//# define EX_B
 //# define EX_C_1
-//# define EX_C_2
+# define EX_C_2
 
 // Define o ponto da fonte puntual aplicada (valido em EX_C_x)
 //-----------------------------------------------------------------------------
