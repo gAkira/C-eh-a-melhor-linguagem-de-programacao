@@ -14,7 +14,7 @@ EP: Um problema inverso para obtencao de distribuicao de Temperatura
 Parte: 1
 
 Compilador: gcc
-Versao utilizada:
+Versao: (Arch Linux 9.3.0-1) 9.3.0
 
 SUMARIO:
 1) LINUX
