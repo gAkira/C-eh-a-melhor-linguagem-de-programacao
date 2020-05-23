@@ -30,7 +30,7 @@ int		main(int argc, char *argv[])
 
 		fprintf(gnuplot, "set title '%s' \n", HEAT_TITLE);
 		get_next_line(fd, &line);
-		fprintf(gnuplot, "set label '%s' at screen 0.4, 0.9 font 'Arial,8'\n", &line[1]);
+		fprintf(gnuplot, "set label '%s' at screen 0.4, 0.875 font 'Arial,8'\n", &line[1]);
 		free(line);
 		fprintf(gnuplot, "unset key \n");
 		fprintf(gnuplot, "set xrange [0:%f] \n", T);
@@ -56,7 +56,7 @@ int		main(int argc, char *argv[])
 
 		fprintf(gnuplot, "set title '%s' \n", ERROR_TITLE);
 		get_next_line(fd, &line);
-		fprintf(gnuplot, "set label '%s' at screen 0.46, 0.925 font 'Arial,8'\n", &line[1]);
+		fprintf(gnuplot, "set label '%s' at screen 0.46, 0.9 font 'Arial,8'\n", &line[1]);
 		free(line);
 		close(fd);
 		fprintf(gnuplot, "set xrange [0:%f] \n", T);
