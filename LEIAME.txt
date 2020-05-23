@@ -48,6 +48,8 @@ $> make
 
 Obs2: Para plotar graficos, e necessaria a instalacao da ferramenta gnuplot
 
+Obs3: Recomenda-se FORTEMENTE a execucao deste programa numa distribuicao linux
+        com uso das ferramentas mencionadas anteriormente
 
 
 INSTRUCOES:
