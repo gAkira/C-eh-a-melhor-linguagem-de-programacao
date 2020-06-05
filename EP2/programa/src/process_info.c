@@ -9,7 +9,7 @@ extern int	USER_M;
 
 static bool	set_nf_p(data *info);
 
-bool		process_info(data *info)
+bool		process_info(heat *u, data *info)
 {
 	USER_N = info->N;
 	USER_M = info->M;
@@ -19,8 +19,14 @@ bool		process_info(data *info)
 	info->f = &fonte;
     info->g1 = &fronteira_1;
     info->g2 = &fronteira_2;
-	return (set_nf_p(info));
+	set_nf_p(info);
+	u->u_k = (double**)malloc(info->nf * sizeof(double*));
+	return (true);
 }
+
+
+
+
 
 static bool	set_nf_p(data *info)
 {
@@ -30,17 +36,24 @@ static bool	set_nf_p(data *info)
 	char	*line;
 	char	*num;
 
-	if (info->ex = 'a')
+	if (info->ex == 'a')
 	{
 		info->nf = 1;
+		info->p = (double*)malloc(info->nf * sizeof(double));
+		info->p[0] = 0.35;
 		return (true);
 	}
-	else if (info->ex = 'b')
+	else if (info->ex == 'b')
 	{
 		info->nf = 4;
+		info->p = (double*)malloc(info->nf * sizeof(double));
+		info->p[0] = 0.15;
+		info->p[1] = 0.3;
+		info->p[2] = 0.7;
+		info->p[3] = 0.8;
 		return (true);
 	}
-	fd = open(DATA_FILE, O_RDONLY);
+	fd = open(NAME_FILE, O_RDONLY);
 	get_next_line(fd, &line);
 	close(fd);
 	i = 0;
@@ -57,12 +70,11 @@ static bool	set_nf_p(data *info)
 				k++;
 			num = strndup(&line[i], k);
 			(info->nf)++;
-			p = realloc(p, info->nf * sizeof(double));
-			p[info->nf - 1] = atof(num);
+			info->p = (double*)realloc(info->p, info->nf * sizeof(double));
+			info->p[info->nf - 1] = atof(num);
 			free(num);
 			i += k;
 		}
 	}
-	free(line);
 	return (true);
 }

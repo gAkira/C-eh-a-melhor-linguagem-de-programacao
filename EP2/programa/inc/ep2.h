@@ -13,15 +13,19 @@
 #ifndef EP2_H
 # define EP2_H
 
+# include <ctype.h>
 # include <fcntl.h>
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
+# include <time.h>
 # include "get_next_line.h"
 
-# define DATA_FILE "teste.txt"
+# define T 1.0
+# define NAME_FILE "./teste.txt"
+# define N_FILE 2048
 
 typedef struct
 {
@@ -47,9 +51,14 @@ typedef struct
 
 typedef struct
 {
+	double	*D;
+	double	*L;
     double	*old;
     double	*new;
 } c_n;
+
+int	USER_N;
+int	USER_M;
 
 double	fonte(double t, double x, double p);
 double	fronteira_1(double t);
@@ -57,8 +66,9 @@ double	fronteira_2(double t);
 double	init_value(double x);
 
 bool	user_input(data *info);
-bool	process_info(data *info);
+bool	process_info(heat *u, data *info);
 bool	crank_nicolson(heat *u, data *info);
+bool	set_uT(heat *u, data *info);
 bool	solve_ak(heat *u, data *info);
 
 #endif
