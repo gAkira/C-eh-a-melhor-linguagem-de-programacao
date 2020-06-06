@@ -15,6 +15,7 @@ bool	user_input(data *info)
 	
 	printf("Selecione o exercicio desejado: ");
 	scanf("%c", &(info->ex));
+	info->ex = (char)tolower((int)info->ex);
 	if (info->ex == 'c' || info->ex == 'd')
 	{
 		printf("Digite um valor para N: ");

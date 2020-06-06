@@ -76,5 +76,6 @@ static bool	set_nf_p(data *info)
 			i += k;
 		}
 	}
+	free(line);
 	return (true);
 }

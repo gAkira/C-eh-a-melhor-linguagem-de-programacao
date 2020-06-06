@@ -24,8 +24,9 @@
 # include "get_next_line.h"
 
 # define T 1.0
-# define NAME_FILE "./teste.txt"
+# define NAME_FILE "teste.txt"
 # define N_FILE 2048
+# define SAVE_FILE "lulz.lol"
 
 typedef struct
 {
@@ -44,6 +45,7 @@ typedef struct
 
 typedef struct
 {
+	double	E2;
 	double	*D;
 	double	**L;
 	double	*u_T;
@@ -72,5 +74,7 @@ bool	process_info(heat *u, data *info);
 bool	crank_nicolson(heat *u, data *info);
 bool	set_uT(heat *u, data *info);
 bool	solve_ak(heat *u, data *info);
+bool	print_uk_file(heat *u, data *info);
+bool	free_mem(heat *u, data *info); 
 
 #endif

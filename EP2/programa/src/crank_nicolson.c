@@ -32,6 +32,8 @@ bool		crank_nicolson(heat *u, data *info)
 		u->u_k[k] = uk.old;
 		k++;
 	}
+	free(uk.L);
+	free(uk.D);
 	return (true);
 }
 

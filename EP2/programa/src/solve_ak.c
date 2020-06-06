@@ -50,14 +50,6 @@ bool			solve_ak(heat *u, data *info)
 		i--;	
 	}
 	free(z);
-	free(u->D);
-	i = 0;
-	while (i < info->nf)
-	{
-		free(u->L[i]);
-		i++;
-	}
-	free(u->L);
 	return (true);
 }
 
