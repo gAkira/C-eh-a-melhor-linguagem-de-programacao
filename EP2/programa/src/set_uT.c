@@ -40,6 +40,8 @@ bool			set_uT(heat *u, data *info)
 
 
 
+
+
 static double	set_noise(double x)
 {
 	double	r;
@@ -69,8 +71,7 @@ static bool		read_u_file(heat *u, data *info)
 	k = 0;
 	while (i <= N_FILE)
 	{
-		get_next_line(fd, &line);
-		if (!(i % (N_FILE / info->N)))
+		if (get_next_line(fd, &line) > 0 && !(i % (N_FILE / info->N)))
 		{
 			u->u_T[k] = (info->ex == 'd') ? set_noise(atof(line)) : atof(line);
 			k++;

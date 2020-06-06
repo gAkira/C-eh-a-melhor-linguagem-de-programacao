@@ -44,6 +44,8 @@ typedef struct
 
 typedef struct
 {
+	double	*D;
+	double	**L;
 	double	*u_T;
 	double	*a_k;
 	double	**u_k;

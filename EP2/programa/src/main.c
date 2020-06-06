@@ -21,10 +21,11 @@ int		main(void)
 	process_info(&u, &info);
 	crank_nicolson(&u, &info);
 	set_uT(&u, &info);
-	//solve_ak(&u, &info);
+	solve_ak(&u, &info);
 	//print_uk_file(&u, &info);
 
-	//for (int i = 0; i < info.nf; i++)
+	for (int i = 0; i < info.nf; i++)
+		printf("p[%d] = %f | a[%d] = %f\n", i, info.p[i], i, u.a_k[i]);
 	//	for (int k = 0; k <= info.N; k++)
 	//		printf("u_T[%d] = %f\n", k, u.u_T[k]);
 	//		printf("p[%d] = %f\t|\tuk[%d][%d] = %f\n",i , info.p[i], i, k, u.u_k[i][k]);
