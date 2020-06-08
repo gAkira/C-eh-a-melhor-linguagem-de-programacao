@@ -4,15 +4,15 @@
 **	Print values of each point of u_T and u_k into file
 */
 
-static bool	print_header(FILE *mignon, heat *u, data *info);
+static bool	print_header(FILE *mignon, data *info);
 static bool	print_body(FILE *mignon, heat *u, data *info);
 
 bool		print_uk_file(heat *u, data *info)
 {
 	FILE	*mignon;
 
-	mignon = fopen(SAVE_FILE, "w");
-	print_header(mignon, u, info);
+	mignon = fopen("./plot/data/"SAVE_FILE, "w");
+	print_header(mignon, info);
 	print_body(mignon, u, info);
 	fclose(mignon);
 	return (true);
@@ -22,7 +22,7 @@ bool		print_uk_file(heat *u, data *info)
 
 
 
-static bool	print_header(FILE *mignon, heat *u, data *info)
+static bool	print_header(FILE *mignon, data *info)
 {
 	int		k;
 

@@ -1,0 +1,166 @@
+┌──────────────────────────────────────────────────────────────────────────────┐
+│          EP1 - MAP3121        .-------.     ,-----.      .---.    .-./`)     │ 
+│   ──────────────────────────  \  _(`)_ \  .'  .-,  '.    | ,_|    \ .-.')    │ 
+│   Authors:                    | (_ o._)| / ,-.|  \ _ \ ,-./  )    / `-' \    │ 
+│   Guilherme Akira A. Santos   |  (_,_) /;  \  '_ /  | :\  '_ '`)   `-'`"`    │ 
+│   Leticia Mendonca Carraro    |   '-.-' |  _`,/ \ _/  | > (_)  )   .---.     │ 
+│                               |   |     : (  '\_/ \   ;(  .  .-'   |   |     │ 
+│   NUSPs:                      |   |      \ `"/  \  ) /  `-'`-'|___ |   |     │ 
+│   11027484                    /   )       '. \_/``".'    |        \|   |     │ 
+│   10374480                    `---'         '-----'      `--------`'---'     │ 
+└──────────────────────────────────────────────────────────────────────────────┘
+
+EP: Um problema inverso para obtencao de distribuicao de Temperatura
+Parte: 1
+
+Compilador: gcc
+Versao <linux>: (Arch Linux 9.3.0-1) 9.3.0
+Versao <windows>: (MinGW.org GCC-6.3.0-1) 6.3.0
+
+SUMARIO:
+1) LINUX
+  1.1) Com GNU make
+    1.1.1) Executar parte X
+    1.1.2) Plotar grafico(s) da parte X
+  1.2) Sem GNU make
+    1.2.1) Executar parte X
+    1.2.2) Plotar grafico(s) da parte X
+2) WINDOWS
+  2.1) Com GNU make
+    2.1.1) Executar parte X
+    2.1.2) Plotar grafico(s) da parte X
+  2.2) Sem GNU make
+    2.2.1) Executar parte X
+    2.2.2) Plotar grafico(s) da parte X
+
+
+
+Subistitua o caractere X nas instrucoes pela parte desejada (1 ou 2)
+Parte 1: Metodo Explicito
+Parte 2: Metodos Implicitos
+
+Para verificar se possui o comando 'make' instalado, digite no terminal:
+$> make --version
+
+Obs: Para informacoes mais detalhadas de uso do 'make' neste EP, digite
+        no terminal:
+$> make
+
+Obs2: Para plotar graficos, e necessaria a instalacao da ferramenta gnuplot
+
+Obs3: Recomenda-se FORTEMENTE a execucao deste programa numa distribuicao linux
+        com uso das ferramentas mencionadas anteriormente
+
+
+INSTRUCOES:
+────────────────────────────────────────────────────────────────────────────────
+1) LINUX (usando bash ou z-shell)
+────────────────────────────────────────────────────────────────────────────────
+1.1) Com GNU make
+────────────────────────────────────────────────────────────────────────────────
+1.1.1) Executar parte X
+    - Editar arquivo pX.h com a configuracao e exercicio desejado
+    - Recompilar e executar a parte X:
+    $> make reX
+
+    - Para executar o programa com a mesma configuracao (alterando apenas N e
+        lambda em tempo de execucao):
+    $> make pX
+
+1.1.2) Plotar grafico(s) da parte X
+    - Para plotar o grafico de calor e erro da parte X:
+    $> make plotX
+
+    - Para plotar apenas o grafico de calor da parte X:
+    $> make heatX
+
+    - Para plotar apenas o grafico de erro da parte X:
+    $> make errorX
+
+────────────────────────────────────────────────────────────────────────────────
+1.2) Sem GNU make
+────────────────────────────────────────────────────────────────────────────────
+1.2.1) Executar parte X
+    - Editar arquivo pX.h com a configuracao e exercicio desejado
+    - Compilar o programa:
+    $> gcc -Wall -Wextra -Werror parte_X/src/* -o ep1_pX -lm
+    OBS: NOTE O 'X' NO CAMINHO PARA OS ARQUIVOS NA COMPILACAO 
+
+    - Executar o programa:
+    $> ./ep1_pX
+
+1.2.2) Plotar grafico(s) da parte X
+    - Compilar programa para plotar dados da parte X:
+    $> gcc -Wall -Wextra -Werror -c parte_X/plot/src/get_next_line.c -o gnl.o
+    $> gcc -Wall -Wextra -Werror -c parte_X/plot/src/get_next_line_utils.c -o gnlu.c
+    $> gcc -Wall -Wextra -Werror -c parte_X/plot/src/linux_plot.c -o lplot.o
+    $> gcc -Wall -Wextra -Werror gnl.o gnlu.o lplot.o -o plot
+
+    - Para plotar o grafico de calor da parte X:
+    $> ./plot 0
+
+    - Para plotar o grafico de erro da parte X:
+    $> ./plot 1
+
+    - Caso altere alguma configuracao em pX.h, apague o executavel:
+    $> rm -f plot
+    -- Recompile
+
+────────────────────────────────────────────────────────────────────────────────
+2) WINDOWS (usando CMD)
+────────────────────────────────────────────────────────────────────────────────
+2.1) Com GNU make
+────────────────────────────────────────────────────────────────────────────────
+2.1.1) Executar parte X
+    - Editar arquivo pX.h com a configuracao e exercicio desejado
+    - Compilar e executar a parte X:
+    $> make pX
+
+    - Caso altere alguma configuracao em pX.h, apague o executavel:
+    $> del parte_X\ep1_pX.exe
+    -- Recompile
+
+2.1.2) Plotar grafico(s) da parte X
+    - Para plotar o grafico de calor e erro da parte X:
+    $> make plotX
+
+    - Para plotar apenas o grafico de calor da parte X:
+    $> make heatX
+
+    - Para plotar apenas o grafico de erro da parte X:
+    $> make errorX
+
+    - Caso altere alguma configuracao em pX.h, apague o executavel e replote:
+    $> del parte_X\plot\plot.exe
+    -- Recompile
+
+────────────────────────────────────────────────────────────────────────────────
+2.2) Sem GNU make
+────────────────────────────────────────────────────────────────────────────────
+2.2.1) Executar parte X
+    - Editar arquivo pX.h com a configuracao e exercicio desejado
+    - Compilar o programa:
+    $> gcc -Wall -Wextra -Werror parte_X\src\* -o ep1_pX.exe -lm
+    OBS: NOTE O 'X' NO CAMINHO PARA OS ARQUIVOS NA COMPILACAO 
+
+    - Executar o programa:
+    $> ./ep1_pX.exe
+
+2.2.2) Plotar grafico(s) da parte X
+    - Compilar programa para plotar dados da parte X:
+    $> gcc -Wall -Wextra -Werror -c parte_X\plot\src\get_next_line.c -o gnl.o
+    $> gcc -Wall -Wextra -Werror -c parte_X\plot\src\get_next_line_utils.c -o gnlu.c
+    $> gcc -Wall -Wextra -Werror -c parte_X\plot\src\windows_plot.c -o wplot.o
+    $> gcc -Wall -Wextra -Werror gnl.o gnlu.o wplot.o -o plot.exe
+
+    - Para plotar o grafico de calor da parte X:
+    $> .\plot.exe 0
+
+    - Para plotar o grafico de erro da parte X:
+    $> .\plot.exe 1
+
+    - Caso altere alguma configuracao em pX.h, apague o executavel:
+    $> del plot.exe
+    -- Recompile
+
+────────────────────────────────────────────────────────────────────────────────

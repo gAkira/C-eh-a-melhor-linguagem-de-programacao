@@ -41,13 +41,8 @@ int			main(int argc, char *argv[])
 	}
 	options = process_options(argv[1]);
 	gnuplot = popen("gnuplot -persistent", "w");
-	file = "./"SAVE_FILE;
+	file = "./data/"SAVE_FILE;
 	fd = open(file, O_RDONLY);
-
-	fprintf(gnuplot, "set title '%s' \n", "SOLUÇÃO DO PROBLEMA INVERSO");
-	//get_next_line(fd, &line);
-	//fprintf(gnuplot, "set label '%s' at screen 0.46, 0.925 font 'Arial,8'\n", &line[1]);
-	//free(line);
 	for (int i = 0 ; i < 6 ; i++)
 	{
 		get_next_line(fd, &line);
@@ -82,6 +77,8 @@ int			main(int argc, char *argv[])
 	}
 	close(fd);
 
+	fprintf(gnuplot, "set title 'SOLUCAO DO PROBLEMA INVERSO: EX(%c)' \n", toupper(ex));
+	fprintf(gnuplot, "set label 'T=%g N=%d M=%d nf=%d' at screen 0.375, 0.925 font 'Arial,8'\n", T, N, M, nf);
 	fprintf(gnuplot, "set xlabel 'length' \n");
 	fprintf(gnuplot, "set ylabel 'heat' \n");
 	started = false;
@@ -154,7 +151,8 @@ int			main(int argc, char *argv[])
 static void	print_usage(void)
 {
 	printf("Modo de uso:\n");
-	printf("\t./graph <itens>\n\n");
+	printf("\t$>make plot OPT=<itens>\n");
+	printf("\t$>./graph <itens>\n\n");
 	printf("Itens:\n");
 	printf("\t1 : distribuicao de calor final fornecida - u_T\n");
 	printf("\t2 : distribuicao de calor final calculada - u_Tk\n");
@@ -173,7 +171,7 @@ static char process_options(char *argv)
 
 	i = 0;
 	options = 0;
-	while (i < strlen(argv))
+	while (i < (int)strlen(argv))
 	{
 		switch (argv[i])
 		{
@@ -191,7 +189,6 @@ static char process_options(char *argv)
 
 static char	*my_itoa(int num)
 {
-	int		in;
 	int		i;
 	int		size;
 	int		last_d;
@@ -199,7 +196,6 @@ static char	*my_itoa(int num)
 	char	*result;
 	
 
-	in = num;
 	size = 0;
 	result = NULL;
 	if (!num)
@@ -214,7 +210,7 @@ static char	*my_itoa(int num)
 		num /= 10;
 	}
 	i = 0;
-	while (i < strlen(result) / 2)
+	while (i < (int)(strlen(result) / 2))
 	{
 		aux = result[i];
 		result[i] = result[strlen(result) - (i + 1)];
@@ -233,7 +229,7 @@ static char	*small_text(int	num)
 	mander = my_itoa(num);
 	result = (char*)malloc((2 * strlen(mander) + 1) * sizeof(char));
 	i = 0;
-	while (i < 2 * strlen(mander))
+	while (i < (int)(2 * strlen(mander)))
 	{
 		result[i] = (i % 2) ? mander[i / 2] : '_';
 		i++;
