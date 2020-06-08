@@ -7,6 +7,7 @@
 extern int	USER_N;
 extern int	USER_M;
 
+static char	*strndup(const char *s, size_t n);
 static bool	set_nf_p(data *info);
 
 bool		process_info(heat *u, data *info)
@@ -26,7 +27,19 @@ bool		process_info(heat *u, data *info)
 
 
 
+static char	*strndup(const char *s, size_t n) {
+    char *p;
 
+	p = memchr(s, '\0', n);
+    if (p != NULL)
+        n = p - s;
+    p = malloc(n + 1);
+    if (p != NULL) {
+        memcpy(p, s, n);
+        p[n] = '\0';
+    }
+    return (p);
+}
 
 static bool	set_nf_p(data *info)
 {

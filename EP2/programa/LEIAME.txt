@@ -1,5 +1,5 @@
 ┌──────────────────────────────────────────────────────────────────────────────┐
-│          EP1 - MAP3121        .-------.     ,-----.      .---.    .-./`)     │ 
+│          EP2 - MAP3121        .-------.     ,-----.      .---.    .-./`)     │ 
 │   ──────────────────────────  \  _(`)_ \  .'  .-,  '.    | ,_|    \ .-.')    │ 
 │   Authors:                    | (_ o._)| / ,-.|  \ _ \ ,-./  )    / `-' \    │ 
 │   Guilherme Akira A. Santos   |  (_,_) /;  \  '_ /  | :\  '_ '`)   `-'`"`    │ 
@@ -11,7 +11,7 @@
 └──────────────────────────────────────────────────────────────────────────────┘
 
 EP: Um problema inverso para obtencao de distribuicao de Temperatura
-Parte: 1
+Parte: 2
 
 Compilador: gcc
 Versao <linux>: (Arch Linux 9.3.0-1) 9.3.0
@@ -20,31 +20,29 @@ Versao <windows>: (MinGW.org GCC-6.3.0-1) 6.3.0
 SUMARIO:
 1) LINUX
   1.1) Com GNU make
-    1.1.1) Executar parte X
-    1.1.2) Plotar grafico(s) da parte X
+    1.1.1) Executar
+    1.1.2) Plotar grafico(s)
   1.2) Sem GNU make
-    1.2.1) Executar parte X
-    1.2.2) Plotar grafico(s) da parte X
+    1.2.1) Executar
+    1.2.2) Plotar grafico(s)
 2) WINDOWS
   2.1) Com GNU make
-    2.1.1) Executar parte X
-    2.1.2) Plotar grafico(s) da parte X
+    2.1.1) Executar
+    2.1.2) Plotar grafico(s)
   2.2) Sem GNU make
-    2.2.1) Executar parte X
-    2.2.2) Plotar grafico(s) da parte X
+    2.2.1) Executar
+    2.2.2) Plotar grafico(s)
 
 
-
-Subistitua o caractere X nas instrucoes pela parte desejada (1 ou 2)
-Parte 1: Metodo Explicito
-Parte 2: Metodos Implicitos
 
 Para verificar se possui o comando 'make' instalado, digite no terminal:
 $> make --version
 
-Obs: Para informacoes mais detalhadas de uso do 'make' neste EP, digite
-        no terminal:
-$> make
+Obs: O arquivo com a posicao das fontes e o valor dos pontos da distribuicao
+        final deve ser colocado na raiz deste diretorio. Por padrao o nome
+        do arquivo e 'teste.txt', mas esse nome pode ser alterado em 
+            ./inc/ep2.h
+        assim como outras configuracoes do sistema
 
 Obs2: Para plotar graficos, e necessaria a instalacao da ferramenta gnuplot
 
@@ -58,109 +56,66 @@ INSTRUCOES:
 ────────────────────────────────────────────────────────────────────────────────
 1.1) Com GNU make
 ────────────────────────────────────────────────────────────────────────────────
-1.1.1) Executar parte X
-    - Editar arquivo pX.h com a configuracao e exercicio desejado
-    - Recompilar e executar a parte X:
-    $> make reX
+1.1.1) Executar
+    - Compilar e executar:
+    $> make
+	
+	- Recompilar e executar:
+    $> make re
 
-    - Para executar o programa com a mesma configuracao (alterando apenas N e
-        lambda em tempo de execucao):
-    $> make pX
-
-1.1.2) Plotar grafico(s) da parte X
-    - Para plotar o grafico de calor e erro da parte X:
-    $> make plotX
-
-    - Para plotar apenas o grafico de calor da parte X:
-    $> make heatX
-
-    - Para plotar apenas o grafico de erro da parte X:
-    $> make errorX
+1.1.2) Plotar grafico(s)
+    - Para plotar o grafico de calor final e as componentes de calor das fontes:
+    $> make plot
 
 ────────────────────────────────────────────────────────────────────────────────
 1.2) Sem GNU make
 ────────────────────────────────────────────────────────────────────────────────
-1.2.1) Executar parte X
-    - Editar arquivo pX.h com a configuracao e exercicio desejado
+1.2.1) Executar
     - Compilar o programa:
-    $> gcc -Wall -Wextra -Werror parte_X/src/* -o ep1_pX -lm
-    OBS: NOTE O 'X' NO CAMINHO PARA OS ARQUIVOS NA COMPILACAO 
+    $> gcc -Wall -Wextra -Werror src/*.c -o ep2 -lm
 
     - Executar o programa:
-    $> ./ep1_pX
+    $> ./ep2
 
-1.2.2) Plotar grafico(s) da parte X
-    - Compilar programa para plotar dados da parte X:
-    $> gcc -Wall -Wextra -Werror -c parte_X/plot/src/get_next_line.c -o gnl.o
-    $> gcc -Wall -Wextra -Werror -c parte_X/plot/src/get_next_line_utils.c -o gnlu.c
-    $> gcc -Wall -Wextra -Werror -c parte_X/plot/src/linux_plot.c -o lplot.o
-    $> gcc -Wall -Wextra -Werror gnl.o gnlu.o lplot.o -o plot
+1.2.2) Plotar grafico(s)
+    - Compilar programa:
+    $> gcc -Wall -Wextra -Werror plot/src_linux/*.c -o plot/graph
 
-    - Para plotar o grafico de calor da parte X:
-    $> ./plot 0
-
-    - Para plotar o grafico de erro da parte X:
-    $> ./plot 1
-
-    - Caso altere alguma configuracao em pX.h, apague o executavel:
-    $> rm -f plot
-    -- Recompile
+    - Para plotar o grafico:
+    $> ./plot/graph <itens>
+    OBS: para saber quais sao os itens aceitos, execute o comando sem atribuir
+        valor para <itens>
 
 ────────────────────────────────────────────────────────────────────────────────
 2) WINDOWS (usando CMD)
 ────────────────────────────────────────────────────────────────────────────────
 2.1) Com GNU make
 ────────────────────────────────────────────────────────────────────────────────
-2.1.1) Executar parte X
-    - Editar arquivo pX.h com a configuracao e exercicio desejado
-    - Compilar e executar a parte X:
-    $> make pX
+2.1.1) Executar
+    - Compilar e executar:
+    $> make
 
-    - Caso altere alguma configuracao em pX.h, apague o executavel:
-    $> del parte_X\ep1_pX.exe
-    -- Recompile
-
-2.1.2) Plotar grafico(s) da parte X
-    - Para plotar o grafico de calor e erro da parte X:
-    $> make plotX
-
-    - Para plotar apenas o grafico de calor da parte X:
-    $> make heatX
-
-    - Para plotar apenas o grafico de erro da parte X:
-    $> make errorX
-
-    - Caso altere alguma configuracao em pX.h, apague o executavel e replote:
-    $> del parte_X\plot\plot.exe
-    -- Recompile
+2.1.2) Plotar grafico(s)
+    - Para plotar o grafico de calor final e as componentes de calor das fontes:
+    $> make plot
 
 ────────────────────────────────────────────────────────────────────────────────
 2.2) Sem GNU make
 ────────────────────────────────────────────────────────────────────────────────
-2.2.1) Executar parte X
-    - Editar arquivo pX.h com a configuracao e exercicio desejado
+2.2.1) Executar
     - Compilar o programa:
-    $> gcc -Wall -Wextra -Werror parte_X\src\* -o ep1_pX.exe -lm
-    OBS: NOTE O 'X' NO CAMINHO PARA OS ARQUIVOS NA COMPILACAO 
+    $> gcc -Wall -Wextra -Werror src\*.c -o ep2.exe -lm
 
     - Executar o programa:
-    $> ./ep1_pX.exe
+    $> .\ep2.exe
 
-2.2.2) Plotar grafico(s) da parte X
-    - Compilar programa para plotar dados da parte X:
-    $> gcc -Wall -Wextra -Werror -c parte_X\plot\src\get_next_line.c -o gnl.o
-    $> gcc -Wall -Wextra -Werror -c parte_X\plot\src\get_next_line_utils.c -o gnlu.c
-    $> gcc -Wall -Wextra -Werror -c parte_X\plot\src\windows_plot.c -o wplot.o
-    $> gcc -Wall -Wextra -Werror gnl.o gnlu.o wplot.o -o plot.exe
+2.2.2) Plotar grafico(s)
+    - Compilar programa:
+    $> gcc -Wall -Wextra -Werror plot\src_windows\*.c -o plot\graph.exe
 
-    - Para plotar o grafico de calor da parte X:
-    $> .\plot.exe 0
-
-    - Para plotar o grafico de erro da parte X:
-    $> .\plot.exe 1
-
-    - Caso altere alguma configuracao em pX.h, apague o executavel:
-    $> del plot.exe
-    -- Recompile
+    - Para plotar o grafico:
+    $> .\plot\graph.exe <itens>
+    OBS: para saber quais sao os itens aceitos, execute o comando sem atribuir
+        valor para <itens>
 
 ────────────────────────────────────────────────────────────────────────────────

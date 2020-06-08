@@ -57,11 +57,11 @@ $(call FixPath,$(OBJ_DIR)/%.o):	$(call FixPath,$(SRC_DIR)/%.c)
 
 
 OPT		=	15
-plot: graph
+plot:
 	@$(MAKE) -C $(PLOT_DIR) $@ OPT=$(OPT)
 
 graph:
-	@$(MAKE) -C $(PLOT_DIR) $@
+	@$(MAKE) -C $(PLOT_DIR) help
 
 clean:
 	@echo "Limpando..."
@@ -75,3 +75,48 @@ fclean:	clean
 	@$(MAKE) -C $(PLOT_DIR) $@
 
 re: fclean all
+
+help:
+	@echo "Modo de uso:"
+	@echo "    make <comando>"
+	@echo "--------------------------------------------------------------------------------"
+	@echo "COMANDOS"
+	@echo "Especificos:"
+	@echo "              -    compila e executa o EP"
+	@echo "    clean     -    limpa os objetos (.o)"
+	@echo "    fclean    -    limpa os objetos (.o) e o executavel"
+	@echo "    re        -    recompila os arquivos e executa"
+	@echo "    help      -    exibe painel de comandos"
+	@echo "    graph     -    exibe lista de comandos para plotagem de graficos"
+	@echo "    plot [OPT]-    plota o grafico de acordo com o valor adotado por OPT"
+	@echo "                   (para saber mais sobre os valores de OPT: $$> make graph)"
+	@echo ""
+	@echo "    Exemplo: $$> make"
+	@echo "        [Este comando compilara e executara o programa do EP2]"
+	@echo ""
+	@echo "    Exemplo: $$> make plot OPT=15"
+	@echo "        [Este comando plotara o grafico da distribuicao final fornecida"
+	@echo "            e as componentes de cada fonte de calor]"
+	@echo "        OBS: OPT assume o valor de 15 por padrao"
+	@echo ""
+	@echo ""
+	@echo "Extra:"
+	@echo "    nyan"
+
+nyan:
+	@echo "    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"
+	@echo "    ░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░"
+	@echo "    ░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░"
+	@echo "    ░░░░░░░░█░░▄░░░░▄░░░░░░░░░░░░░░█░░░░░░░"
+	@echo "    ░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░"
+	@echo "    ░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░"
+	@echo "    ░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░"
+	@echo "    ░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░"
+	@echo "    ░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░"
+	@echo "    ░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░"
+	@echo "    ░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░"
+	@echo "    ░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░"
+	@echo "    ░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░"
+	@echo "    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░"
+
+

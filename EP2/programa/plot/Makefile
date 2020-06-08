@@ -39,7 +39,7 @@ OBJ		=	$(call FixPath,						\
 			$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC)))
 
 all: $(NAME)
-	@./$(NAME)
+	@$(call FixPath, ./$(NAME))
 
 $(NAME): $(OBJ)
 	@$(CC) $(CC_FLAG) $^ -o $@ -l$(LIB)
@@ -50,7 +50,7 @@ $(call FixPath,$(OBJ_DIR)/%.o): $(call FixPath,$(SRC_DIR)/%.c)
 
 OPT		= 15
 plot: $(NAME)
-	@./$(NAME) $(OPT)
+	@$(call FixPath, ./$(NAME) $(OPT))
 
 clean:
 	@$(RMDIR) $(OBJ_DIR)
@@ -61,3 +61,6 @@ fclean: clean
 	@$(RM) $(NAME).exe
 
 re: fclean all
+
+help: $(NAME)
+	@$(call FixPath, ./$(NAME))

@@ -23,9 +23,16 @@
 # include <time.h>
 # include "get_next_line.h"
 
+// Define o tempo maximo do dominio [0.0 , T]
 # define T 1.0
+
+// Define o nome do arquivo a ser lido para obtencao dos dados de u_T e fontes
 # define NAME_FILE "teste.txt"
+
+// Define o quanto de pontos tera no arquivo lido NAME_FILE
 # define N_FILE 2048
+
+// Define o nome do arquivo que terao os dados salvos para serem plotados
 # define SAVE_FILE "lulz.lol"
 
 typedef struct

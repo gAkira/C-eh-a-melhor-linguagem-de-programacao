@@ -78,7 +78,7 @@ int			main(int argc, char *argv[])
 	close(fd);
 
 	fprintf(gnuplot, "set title 'SOLUCAO DO PROBLEMA INVERSO: EX(%c)' \n", toupper(ex));
-	fprintf(gnuplot, "set label 'T=%g N=%d M=%d nf=%d' at screen 0.375, 0.925 font 'Arial,8'\n", T, N, M, nf);
+	fprintf(gnuplot, "set label 'T=%g N=%d M=%d nf=%d' at screen 0.415, 0.925 font 'Arial,8'\n", T, N, M, nf);
 	fprintf(gnuplot, "set xlabel 'length' \n");
 	fprintf(gnuplot, "set ylabel 'heat' \n");
 	started = false;
