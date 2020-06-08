@@ -43,7 +43,7 @@ static bool	print_header(FILE *mignon, heat *u, data *info)
 		fprintf(mignon, "#%e\n", info->p[k]);
 		k++;
 	}
-	fprintf(mignon, "#x_i | u_T(x_i) | a_k | u_k(x_i) | a_k*u_k(x_i)\n");
+	fprintf(mignon, "#x_i | u_T(x_i) | u_Tk(x_i) | a_k | u_k(x_i) | a_k*u_k(x_i)\n");
 	return (true);
 }
 
@@ -55,7 +55,7 @@ static bool	print_body(FILE *mignon, heat *u, data *info)
 	i = 0;
 	while (i <= info->N)
 	{
-		fprintf(mignon, "%e %e", i * info->d_x, u->u_T[i]);
+		fprintf(mignon, "%e %e %e", i * info->d_x, u->u_T[i], u->u_Tk[i]);
 		k = 0;
 		while (k < info->nf)
 		{

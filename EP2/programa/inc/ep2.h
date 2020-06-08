@@ -51,6 +51,7 @@ typedef struct
 	double	*u_T;
 	double	*a_k;
 	double	**u_k;
+	double	*u_Tk;
 } heat;
 
 typedef struct
@@ -74,6 +75,8 @@ bool	process_info(heat *u, data *info);
 bool	crank_nicolson(heat *u, data *info);
 bool	set_uT(heat *u, data *info);
 bool	solve_ak(heat *u, data *info);
+bool	calc_uTk(heat *u, data *info);
+void	calc_E2(heat *u, data *info);
 bool	print_uk_file(heat *u, data *info);
 bool	free_mem(heat *u, data *info); 
 

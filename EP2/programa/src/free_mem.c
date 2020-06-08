@@ -12,6 +12,7 @@ bool	free_mem(heat *u, data *info)
 	free(u->D);
 	free(u->u_T);
 	free(u->a_k);
+	free(u->u_Tk);
 	i = 0;
 	while (i < info->nf)
 	{

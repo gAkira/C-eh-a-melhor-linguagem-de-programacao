@@ -12,7 +12,6 @@
 
 #include "../inc/ep2.h"
 
-static void	calc_E2(heat *u, data *info);
 static void	print_info(heat *u, data *info);
 
 int			main(void)
@@ -25,46 +24,17 @@ int			main(void)
 	crank_nicolson(&u, &info);
 	set_uT(&u, &info);
 	solve_ak(&u, &info);
-	print_uk_file(&u, &info);
+	calc_uTk(&u, &info);
 	calc_E2(&u, &info);
+	print_uk_file(&u, &info);
 	print_info(&u, &info);
 	free_mem(&u, &info);
-	
-	//for (int i = 0; i < info.nf; i++)
-	//	printf("p[%d] = %f | a[%d] = %f\n", i, info.p[i], i, u.a_k[i]);
-	//	for (int k = 0; k <= info.N; k++)
-	//		printf("u_T[%d] = %f\n", k, u.u_T[k]);
-	//		printf("p[%d] = %f\t|\tuk[%d][%d] = %f\n",i , info.p[i], i, k, u.u_k[i][k]);
 	return (0);
 }
 
 
 
 
-
-static void	calc_E2(heat *u, data *info)
-{
-	int		i;
-	int		k;
-	double	sum_i;
-	double	sum_k;
-
-	i = 1;
-	sum_i = 0.0;
-	while (i < info->N)
-	{
-		k = 0;
-		sum_k = 0.0;
-		while (k < info->nf)
-		{
-			sum_k += u->a_k[k] * u->u_k[k][i];
-			k++;
-		}
-		sum_i += pow(u->u_T[i] - sum_k, 2.0);
-		i++;
-	}
-	u->E2 = pow(info->d_x * sum_i, 0.5);
-}
 
 static void	print_info(heat *u, data *info)
 {
