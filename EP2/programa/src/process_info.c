@@ -7,7 +7,7 @@
 extern int	USER_N;
 extern int	USER_M;
 
-static char	*strndup(const char *s, size_t n);
+static char	*my_strndup(const char *s, size_t n);
 static bool	set_nf_p(data *info);
 
 bool		process_info(heat *u, data *info)
@@ -27,7 +27,7 @@ bool		process_info(heat *u, data *info)
 
 
 
-static char	*strndup(const char *s, size_t n) {
+static char	*my_strndup(const char *s, size_t n) {
     char *p;
 
 	p = memchr(s, '\0', n);
@@ -81,7 +81,7 @@ static bool	set_nf_p(data *info)
 			k = 1;
 			while (!isspace(line[i + k]))
 				k++;
-			num = strndup(&line[i], k);
+			num = my_strndup(&line[i], k);
 			(info->nf)++;
 			info->p = (double*)realloc(info->p, info->nf * sizeof(double));
 			info->p[info->nf - 1] = atof(num);
