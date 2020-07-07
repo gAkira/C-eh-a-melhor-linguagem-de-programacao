@@ -48,8 +48,8 @@ $(call FixPath,$(OBJ_DIR)/%.o): $(call FixPath,$(SRC_DIR)/%.c)
 	@$(call MKDIR,$(OBJ_DIR))
 	@$(CC) $(CC_FLAG) -c $< -o $@ -l$(LIB)
 
-OPT		= 15
-plot: $(NAME)
+OPT		= 125
+plot:
 	@$(call FixPath, ./$(NAME) $(OPT))
 
 clean:

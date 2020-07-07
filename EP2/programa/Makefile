@@ -56,11 +56,14 @@ $(call FixPath,$(OBJ_DIR)/%.o):	$(call FixPath,$(SRC_DIR)/%.c)
 	@$(CC) $(CC_FLAG) -c $< -o $@ -l$(LIB)
 
 
-OPT		=	15
-plot:
+graph:
+	@$(MAKE) -C $(PLOT_DIR)
+
+OPT		=	125
+plot: graph
 	@$(MAKE) -C $(PLOT_DIR) $@ OPT=$(OPT)
 
-graph:
+plot_help:
 	@$(MAKE) -C $(PLOT_DIR) help
 
 clean:
@@ -87,9 +90,9 @@ help:
 	@echo "    fclean    -    limpa os objetos (.o) e o executavel"
 	@echo "    re        -    recompila os arquivos e executa"
 	@echo "    help      -    exibe painel de comandos"
-	@echo "    graph     -    exibe lista de comandos para plotagem de graficos"
+	@echo "    plot_help -    exibe lista de comandos para plotagem de graficos"
 	@echo "    plot [OPT]-    plota o grafico de acordo com o valor adotado por OPT"
-	@echo "                   (para saber mais sobre os valores de OPT: $$> make graph)"
+	@echo "                   (para saber mais sobre os valores de OPT: $$> make plot_help)"
 	@echo ""
 	@echo "    Exemplo: $$> make"
 	@echo "        [Este comando compilara e executara o programa do EP2]"

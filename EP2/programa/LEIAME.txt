@@ -60,7 +60,7 @@ INSTRUCOES:
     - Compilar e executar:
     $> make
 	
-	- Recompilar e executar:
+    - Recompilar e executar:
     $> make re
 
 1.1.2) Plotar grafico(s)
