@@ -1,7 +1,7 @@
 #include "../inc/ep2.h"
 
 /*
-** Calculate the aproximated solution to u_T
+** Calculate the approximated solution to u_T
 */
 
 bool	calc_uTk(heat *u, data *info)
