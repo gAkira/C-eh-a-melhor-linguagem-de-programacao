@@ -18,7 +18,8 @@ int			main(void)
 {
 	heat	u;
 	data	info;
-
+	
+	srand(time(0));
 	user_input(&info);
 	process_info(&u, &info);
 	crank_nicolson(&u, &info);

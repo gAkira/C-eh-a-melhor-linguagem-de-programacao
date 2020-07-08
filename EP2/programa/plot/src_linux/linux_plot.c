@@ -83,15 +83,24 @@ int			main(int argc, char *argv[])
 	fprintf(gnuplot, "set ylabel 'heat' \n");
 	fprintf(gnuplot, "set style line 2 lt 2 \n");
 	started = false;
-	if (options & 0b00000001)
+	if (ex == 'd' && options & 0b00000010)
 	{	
 		if (started)
-			fprintf(gnuplot, ", '%s' u 1:2 w l lw 3 title 'u_T(x)'", file);
+			fprintf(gnuplot, ", '%s' u 1:3 w l lc 9 lw 2 title 'u_T__k(x)'", file);
 		else
-			fprintf(gnuplot, "plot '%s' u 1:2 w l lw 3 title 'u_T(x)'", file);
+			fprintf(gnuplot, "plot '%s' u 1:3 w l lc 9 lw 2 title 'u_T__k(x)'", file);
 		started = true;
 	}
-	if (options & 0b00000010)
+	if (options & 0b00000001)
+	{
+		double lw = (ex == 'd' ? 1 : 3);
+		if (started)
+			fprintf(gnuplot, ", '%s' u 1:2 w l lw %f title 'u_T(x)'", file, lw);
+		else
+			fprintf(gnuplot, "plot '%s' u 1:2 w l lw %f title 'u_T(x)'", file, lw);
+		started = true;
+	}
+	if (ex != 'd' && options & 0b00000010)
 	{	
 		if (started)
 			fprintf(gnuplot, ", '%s' u 1:3 w l lt 2 lw 2 title 'u_T__k(x)'", file);

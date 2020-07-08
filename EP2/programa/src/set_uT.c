@@ -48,10 +48,8 @@ static double	set_noise(double x)
 	double	e;
 	double	noisy;
 
-	srand(time(0));
 	e = 0.01;
 	r = ((2.0 / (double)RAND_MAX) * rand()) - 1.0;
-	//noisy = x + (r * e);
 	noisy = x * (1.0 + (r * e));
 	return (noisy);
 }
