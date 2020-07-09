@@ -32,6 +32,8 @@ SUMARIO:
   2.2) Sem GNU make
     2.2.1) Executar
     2.2.2) Plotar grafico(s)
+3) ARQUIVO PARA LEITURA
+  3.1) Especificacoes do arquivo
 
 
 
@@ -119,3 +121,16 @@ INSTRUCOES:
         valor para <itens>
 
 ────────────────────────────────────────────────────────────────────────────────
+3) ARQUIVO PARA LEITURA
+────────────────────────────────────────────────────────────────────────────────
+3.1) Especificacoes do arquivo
+    O arquivo para leitura se chama, por padrao, 'teste.txt'. O nome do arquivo
+    a ser lido pode ser alterado em './inc/ep2.h' ao definir um novo valor para
+    NAME_FILE.
+    A quantidade de pontos do arquivo lido tambem pode ser alterada em
+    './inc/ep2.h', atribuindo este novo valor a N_FILE.
+
+    O arquivo com lido deve serguir a seguinte estrutura:
+    - PRIMEIRA LINHAS com as posicoes das fontes de calor, separadas por espaco.
+    - Linhas subsequentes contendo o valor da distribuicao final de calor, sendo
+      um valor por linha. De x=0 ate x=N.
