@@ -10,8 +10,10 @@ bool	calc_uTk(heat *u, data *info)
 	int		k;
 
 	u->u_Tk = (double*)malloc((info->N + 1) * sizeof(double));
-	i = 0;
-	while (i <= info->N)
+	u->u_Tk[0] = fronteira_1(T);
+	u->u_Tk[info->N] = fronteira_2(T);
+	i = 1;
+	while (i < info->N)
 	{
 		k = 0;
 		u->u_Tk[i] = 0.0;
