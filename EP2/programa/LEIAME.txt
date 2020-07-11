@@ -49,7 +49,6 @@ Obs: O arquivo com a posicao das fontes e o valor dos pontos da distribuicao
 Obs2: Para plotar graficos, e necessaria a instalacao da ferramenta gnuplot
 
 Obs3: Recomenda-se FORTEMENTE a execucao deste programa numa distribuicao linux
-        com uso das ferramentas mencionadas anteriormente
 
 
 INSTRUCOES:
@@ -84,7 +83,9 @@ INSTRUCOES:
     $> gcc -Wall -Wextra -Werror plot/src_linux/*.c -o plot/graph
 
     - Para plotar o grafico:
+    $> cd plot
     $> ./plot/graph <itens>
+    $> cd ..
     OBS: para saber quais sao os itens aceitos, execute o comando sem atribuir
         valor para <itens>
 
@@ -116,7 +117,9 @@ INSTRUCOES:
     $> gcc -Wall -Wextra -Werror plot\src_windows\*.c -o plot\graph.exe
 
     - Para plotar o grafico:
+    $> cd plot
     $> .\plot\graph.exe <itens>
+    $> cd ..
     OBS: para saber quais sao os itens aceitos, execute o comando sem atribuir
         valor para <itens>
 
@@ -131,6 +134,8 @@ INSTRUCOES:
     './inc/ep2.h', atribuindo este novo valor a N_FILE.
 
     O arquivo com lido deve serguir a seguinte estrutura:
-    - PRIMEIRA LINHAS com as posicoes das fontes de calor, separadas por espaco.
+    - PRIMEIRA LINHA com as posicoes das fontes de calor, separadas por espaco.
     - Linhas subsequentes contendo o valor da distribuicao final de calor, sendo
       um valor por linha. De x=0 ate x=N.
+
+────────────────────────────────────────────────────────────────────────────────
