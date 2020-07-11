@@ -84,7 +84,7 @@ INSTRUCOES:
 
     - Para plotar o grafico:
     $> cd plot
-    $> ./plot/graph <itens>
+    $> ./graph <itens>
     $> cd ..
     OBS: para saber quais sao os itens aceitos, execute o comando sem atribuir
         valor para <itens>
@@ -118,7 +118,7 @@ INSTRUCOES:
 
     - Para plotar o grafico:
     $> cd plot
-    $> .\plot\graph.exe <itens>
+    $> .\graph.exe <itens>
     $> cd ..
     OBS: para saber quais sao os itens aceitos, execute o comando sem atribuir
         valor para <itens>
