@@ -27,3 +27,7 @@ Pelo método dos mínimos quadrados é possível encontrar a intensidade das fon
 #### Obs.:
 Para mais informações do problema proposto, leia os enunciados anexados em cada EP.
 Para mais informações sobre a resolução, leia os relatórios e o LEIAME.txt de cada EP.
+
+#### Obs.2:
+Embora fosse permitido realizar o projeto em Python, C++ ou C, escolheu-se o uso da
+linguagem C para enaltecer a superioridade absoluta da mesma!  :)
